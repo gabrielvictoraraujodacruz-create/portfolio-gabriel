@@ -144,3 +144,31 @@ if (frase && !reducedMotion) {
   };
   setTimeout(digita, 500);
 }
+
+const raiz = document.documentElement;
+const ingles = raiz.lang.startsWith("en");
+const rotulo = (claro) => (ingles
+  ? (claro ? "Switch to dark theme" : "Switch to light theme")
+  : (claro ? "Mudar para o tema escuro" : "Mudar para o tema claro"));
+const ladoALado = document.querySelector(".lang");
+if (ladoALado) {
+  const tema = document.createElement("button");
+  tema.className = "theme-toggle";
+  tema.type = "button";
+  tema.innerHTML = '<svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  const atualiza = () => {
+    const claro = raiz.dataset.theme === "light";
+    tema.setAttribute("aria-label", rotulo(claro));
+    tema.title = rotulo(claro);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", claro ? "#f6f8f9" : "#101419");
+  };
+  tema.addEventListener("click", () => {
+    const claro = raiz.dataset.theme !== "light";
+    if (claro) raiz.dataset.theme = "light";
+    else delete raiz.dataset.theme;
+    try { localStorage.setItem("tema", claro ? "claro" : "escuro"); } catch (e) {}
+    atualiza();
+  });
+  ladoALado.after(tema);
+  atualiza();
+}

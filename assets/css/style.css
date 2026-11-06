@@ -32,7 +32,7 @@ html {
 body {
   margin: 0;
   background-color: var(--bg);
-  background-image: radial-gradient(rgba(131, 243, 222, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(var(--glow), 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
   color: var(--text);
   font-family: var(--body);
@@ -115,7 +115,7 @@ ol {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(16, 20, 25, 0.94);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--surface-3);
 }
 
@@ -879,8 +879,8 @@ ol {
 .card.visible:hover {
   transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px);
   border-color: var(--primary);
-  box-shadow: 0 12px 28px rgba(131, 243, 222, 0.12);
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(131, 243, 222, 0.13), transparent 55%), var(--surface);
+  box-shadow: 0 12px 28px rgba(var(--glow), 0.12);
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(var(--glow), 0.13), transparent 55%), var(--surface);
   transition-delay: 0s;
   transition-duration: 0.15s;
 }
@@ -1194,6 +1194,71 @@ ol {
 @keyframes ic-float { 50% { transform: translateY(-4px) rotate(4deg); } }
 @keyframes ic-dash { to { stroke-dashoffset: -10; } }
 @keyframes ic-blink { 50% { transform: scale(0.5); opacity: 0.3; } }
+
+:root[data-theme="light"] {
+  --bg: #f6f8f9;
+  --bg-deep: #e9eef0;
+  --surface: #ffffff;
+  --surface-2: #f0f3f4;
+  --surface-3: #d6dde1;
+  --line: #9aa8ae;
+  --text: #1a2329;
+  --muted: #47545c;
+  --primary: #0b6b5c;
+  --on-primary: #ffffff;
+  --green: #0a7a4f;
+  --blue: #1f4e9c;
+  --glow: 11, 107, 92;
+  --header-bg: rgba(246, 248, 249, 0.94);
+}
+
+:root[data-theme="light"] .card-icon {
+  filter: brightness(0.72) saturate(1.4);
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.theme-toggle:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle .lua,
+:root[data-theme="light"] .theme-toggle .sol {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .lua {
+  display: block;
+}
+
+@media print {
+  .theme-toggle {
+    display: none;
+  }
+}
 
 @media print {
   :root {
