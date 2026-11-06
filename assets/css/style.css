@@ -1179,7 +1179,7 @@ ol {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .ic-spin { animation: ic-spin 14s linear infinite; }
+  .ic-claude .arm { animation: ic-wave 1.1s ease-in-out infinite; transform-origin: 39px 24px; }
   .ic-pulse rect:last-of-type { animation: ic-pulse 2s ease-in-out infinite; transform-origin: 24px 24px; }
   .ic-flap { animation: ic-flap 2.4s ease-in-out infinite; transform-origin: 8px 40px; }
   .ic-float { animation: ic-float 3s ease-in-out infinite; }
@@ -1188,7 +1188,7 @@ ol {
   .ai-card:hover .card-icon { animation-duration: 0.8s; }
 }
 
-@keyframes ic-spin { to { transform: rotate(360deg); } }
+@keyframes ic-wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-50deg); } }
 @keyframes ic-pulse { 50% { transform: scale(1.35); } }
 @keyframes ic-flap { 50% { transform: rotate(-10deg) scale(1.06); } }
 @keyframes ic-float { 50% { transform: translateY(-4px) rotate(4deg); } }
