@@ -1179,7 +1179,7 @@ ol {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .ic-spin { animation: ic-spin 2.4s ease-in-out infinite; transform-origin: 24px 24px; }
+  .ic-star .f { opacity: 0; animation: ic-frame 1.2s step-end infinite; animation-delay: calc(var(--i) * 0.2s); }
   .ic-pulse rect:last-of-type { animation: ic-pulse 2s ease-in-out infinite; transform-origin: 24px 24px; }
   .ic-flap { animation: ic-flap 2.4s ease-in-out infinite; transform-origin: 8px 40px; }
   .ic-float { animation: ic-float 3s ease-in-out infinite; }
@@ -1188,7 +1188,7 @@ ol {
   .ai-card:hover .card-icon { animation-duration: 0.8s; }
 }
 
-@keyframes ic-spin { 0%, 100% { transform: rotate(0) scale(0.35); opacity: 0.2; } 50% { transform: rotate(90deg) scale(1); opacity: 1; } }
+@keyframes ic-frame { 0% { opacity: 1; } 16.66%, 100% { opacity: 0; } }
 @keyframes ic-pulse { 50% { transform: scale(1.35); } }
 @keyframes ic-flap { 50% { transform: rotate(-10deg) scale(1.06); } }
 @keyframes ic-float { 50% { transform: translateY(-4px) rotate(4deg); } }
