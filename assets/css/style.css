@@ -776,6 +776,14 @@ ol {
   align-self: flex-start;
 }
 
+.project:not(:has(img)) .project-body {
+  justify-content: center;
+}
+
+.project:not(:has(img)) .project-links {
+  margin-top: 0;
+}
+
 .project-body .subject-list {
   margin-top: 4px;
 }
