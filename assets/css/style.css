@@ -1163,3 +1163,34 @@ ol {
   object-fit: cover;
   object-position: center;
 }
+
+.ai-card {
+  position: relative;
+}
+
+.ai-card h3 {
+  padding-right: 56px;
+}
+
+.card-icon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ic-spin { animation: ic-spin 14s linear infinite; }
+  .ic-pulse rect:last-of-type { animation: ic-pulse 2s ease-in-out infinite; transform-origin: 24px 24px; }
+  .ic-flap { animation: ic-flap 2.4s ease-in-out infinite; transform-origin: 8px 40px; }
+  .ic-float { animation: ic-float 3s ease-in-out infinite; }
+  .ic-flow .dash { stroke-dasharray: 5 5; animation: ic-dash 1s linear infinite; }
+  .ic-blink .spark { animation: ic-blink 2s ease-in-out infinite; transform-origin: 24px 20px; }
+  .ai-card:hover .card-icon { animation-duration: 0.8s; }
+}
+
+@keyframes ic-spin { to { transform: rotate(360deg); } }
+@keyframes ic-pulse { 50% { transform: scale(1.35); } }
+@keyframes ic-flap { 50% { transform: rotate(-10deg) scale(1.06); } }
+@keyframes ic-float { 50% { transform: translateY(-4px) rotate(4deg); } }
+@keyframes ic-dash { to { stroke-dashoffset: -10; } }
+@keyframes ic-blink { 50% { transform: scale(0.5); opacity: 0.3; } }
