@@ -776,7 +776,7 @@ ol {
   align-self: flex-start;
 }
 
-.project:not(:has(img)) .project-body {
+.project:not(:has(img)) .project-body-x {
   justify-content: center;
 }
 
@@ -1156,4 +1156,10 @@ ol {
       transform: scale(0.6);
     }
   }
+}
+
+.project img.banner {
+  aspect-ratio: 4 / 1;
+  object-fit: cover;
+  object-position: center;
 }
