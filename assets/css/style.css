@@ -1216,6 +1216,11 @@ ol {
   filter: brightness(0.72) saturate(1.4);
 }
 
+:root[data-theme="light"] .card.visible:hover {
+  box-shadow: 0 14px 32px rgba(11, 107, 92, 0.32);
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(11, 107, 92, 0.22), transparent 60%), var(--surface);
+}
+
 .theme-toggle {
   display: grid;
   place-items: center;
