@@ -1194,3 +1194,61 @@ ol {
 @keyframes ic-float { 50% { transform: translateY(-4px) rotate(4deg); } }
 @keyframes ic-dash { to { stroke-dashoffset: -10; } }
 @keyframes ic-blink { 50% { transform: scale(0.5); opacity: 0.3; } }
+
+@media print {
+  :root {
+    --bg: #fff;
+    --bg-deep: #fff;
+    --surface: #fff;
+    --surface-2: #f3f5f6;
+    --surface-3: #cfd6da;
+    --line: #9aa5aa;
+    --text: #1f2933;
+    --muted: #3d4852;
+    --primary: #0b6b5c;
+    --on-primary: #fff;
+    --green: #0b6b5c;
+    --blue: #1f4e9c;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .header,
+  .progress,
+  .filters,
+  .menu-button,
+  .skip-link,
+  .hero .button,
+  .hero-actions {
+    display: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+
+  .card,
+  .timeline > li {
+    break-inside: avoid;
+  }
+
+  .card {
+    box-shadow: none;
+  }
+}
+
+@media print {
+  .typing-caret::after {
+    display: none;
+  }
+}
