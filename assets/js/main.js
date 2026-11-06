@@ -162,10 +162,14 @@ if (ladoALado) {
   };
   tema.addEventListener("click", () => {
     const claro = raiz.dataset.theme !== "light";
-    if (claro) raiz.dataset.theme = "light";
-    else delete raiz.dataset.theme;
-    try { localStorage.setItem("tema", claro ? "claro" : "escuro"); } catch (e) {}
-    atualiza();
+    const troca = () => {
+      if (claro) raiz.dataset.theme = "light";
+      else delete raiz.dataset.theme;
+      try { localStorage.setItem("tema", claro ? "claro" : "escuro"); } catch (e) {}
+      atualiza();
+    };
+    if (document.startViewTransition && !reducedMotion) document.startViewTransition(troca);
+    else troca();
   });
   ladoALado.after(tema);
   atualiza();
