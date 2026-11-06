@@ -443,6 +443,21 @@ ol {
   color: var(--muted);
 }
 
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 260px));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius);
+}
+
 .terminal {
   overflow: hidden;
   border: 1px solid var(--surface-3);
