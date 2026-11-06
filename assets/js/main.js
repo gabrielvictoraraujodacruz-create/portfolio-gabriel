@@ -80,6 +80,27 @@ copyButton.addEventListener("click", async () => {
 
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+if (!reducedMotion && matchMedia("(hover: hover)").matches) {
+  document.querySelectorAll(".section .card").forEach((card) => {
+    const inclina = card.classList.contains("project");
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      card.style.setProperty("--mx", `${x * 100}%`);
+      card.style.setProperty("--my", `${y * 100}%`);
+      if (inclina) {
+        card.style.setProperty("--rx", `${(0.5 - y) * 8}deg`);
+        card.style.setProperty("--ry", `${(x - 0.5) * 8}deg`);
+      }
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.removeProperty("--rx");
+      card.style.removeProperty("--ry");
+    });
+  });
+}
+
 if (!reducedMotion) {
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -94,6 +115,9 @@ if (!reducedMotion) {
 
   document.querySelectorAll(".section .card, .section-head").forEach((element) => {
     element.classList.add("reveal");
+    const irmaos = element.parentElement.querySelectorAll(":scope > .card");
+    const posicao = [...irmaos].indexOf(element);
+    if (posicao > 0) element.style.setProperty("--delay", `${(posicao % 4) * 0.08}s`);
     revealObserver.observe(element);
   });
 }
