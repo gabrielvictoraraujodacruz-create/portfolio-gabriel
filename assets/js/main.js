@@ -128,3 +128,19 @@ if (!reducedMotion) {
   barra.setAttribute("aria-hidden", "true");
   document.body.prepend(barra);
 }
+
+const frase = document.querySelector(".tagline");
+if (frase && !reducedMotion) {
+  const texto = frase.textContent;
+  frase.setAttribute("aria-label", texto);
+  frase.style.minHeight = `${frase.offsetHeight}px`;
+  frase.textContent = "";
+  frase.classList.add("typing-caret");
+  let i = 0;
+  const digita = () => {
+    frase.textContent = texto.slice(0, ++i);
+    if (i < texto.length) setTimeout(digita, 28);
+    else setTimeout(() => frase.classList.remove("typing-caret"), 1500);
+  };
+  setTimeout(digita, 500);
+}
