@@ -121,3 +121,10 @@ if (!reducedMotion) {
     revealObserver.observe(element);
   });
 }
+
+if (!reducedMotion) {
+  const barra = document.createElement("div");
+  barra.className = "progress";
+  barra.setAttribute("aria-hidden", "true");
+  document.body.prepend(barra);
+}
