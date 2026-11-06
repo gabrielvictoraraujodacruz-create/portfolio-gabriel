@@ -105,9 +105,7 @@ if (!reducedMotion) {
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
+        entry.target.classList.toggle("visible", entry.isIntersecting);
       });
     },
     { rootMargin: "0px 0px -8% 0px" }
