@@ -17,8 +17,10 @@ Depois abra http://localhost:8000.
 - `pt-BR/index.html`: site em português
 - `en/index.html`: site em inglês
 - `assets/css/style.css`: estilos e cores
-- `assets/js/main.js`: menu, filtro de projetos, cópia do e-mail e animações
+- `assets/js/main.js`: menu, terminal interativo, dados ao vivo do GitHub e do dev.to, cópia do e-mail e animações
 - `assets/img/`: foto e imagens dos projetos
+- `assets/cv/`: currículo em PDF (português e inglês)
+- `404.html`, `sitemap.xml`, `robots.txt`: página de erro e arquivos para buscadores
 
 ## Como atualizar
 

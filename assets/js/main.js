@@ -174,3 +174,87 @@ if (ladoALado) {
   ladoALado.after(tema);
   atualiza();
 }
+
+const terminal = document.querySelector("[data-terminal]");
+if (terminal) {
+  const saida = terminal.querySelector(".terminal-out");
+  const form = terminal.querySelector(".terminal-in");
+  const campo = form.querySelector("input");
+  const cv = ingles ? "../assets/cv/resume-gabriel-victor.pdf" : "../assets/cv/curriculo-gabriel-victor.pdf";
+  const vai = (id) => () => {
+    document.getElementById(id).scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+    return ingles ? `Going to #${id}...` : `Indo para #${id}...`;
+  };
+  const comandos = ingles ? {
+    help: () => "about · projects · skills · education · experience · contact · resume · github · theme · lang · clear",
+    whoami: () => "Gabriel Victor · Software Engineering student at UDF · Brasília, DF",
+    about: vai("sobre"), projects: vai("projetos"), skills: vai("tecnologias"), education: vai("formacao"),
+    experience: vai("experiencia"), contact: vai("contato"),
+    resume: () => { open(cv); return "Opening résumé (PDF)..."; },
+    github: () => { open("https://github.com/gabrielvictoraraujodacruz-create"); return "Opening GitHub..."; },
+    theme: () => { document.querySelector(".theme-toggle")?.click(); return "Theme switched."; },
+    lang: () => { location.href = "../pt-BR/index.html#sobre"; return "Indo para o português..."; },
+  } : {
+    help: () => "sobre · projetos · materias · formacao · experiencia · contato · curriculo · github · tema · idioma · limpar",
+    whoami: () => "Gabriel Victor · Engenharia de Software na UDF · Brasília, DF",
+    sobre: vai("sobre"), projetos: vai("projetos"), materias: vai("tecnologias"), formacao: vai("formacao"),
+    experiencia: vai("experiencia"), contato: vai("contato"),
+    curriculo: () => { open(cv); return "Abrindo o currículo (PDF)..."; },
+    github: () => { open("https://github.com/gabrielvictoraraujodacruz-create"); return "Abrindo o GitHub..."; },
+    tema: () => { document.querySelector(".theme-toggle")?.click(); return "Tema trocado."; },
+    idioma: () => { location.href = "../en/index.html#sobre"; return "Switching to English..."; },
+  };
+  const escreve = (texto, classe) => {
+    const linha = document.createElement("p");
+    if (classe) linha.className = classe;
+    linha.textContent = texto;
+    saida.append(linha);
+    saida.scrollTop = saida.scrollHeight;
+  };
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const cmd = campo.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    campo.value = "";
+    if (!cmd) return;
+    escreve(`$ ${cmd}`, "terminal-cmd");
+    if (cmd === "clear" || cmd === "limpar") { saida.replaceChildren(); return; }
+    const acao = comandos[cmd];
+    escreve(acao ? acao() : (ingles ? `Command not found: ${cmd}. Type help.` : `Comando não encontrado: ${cmd}. Digite help.`));
+  });
+}
+
+const quando = (data) => {
+  const dias = Math.round((Date.now() - new Date(data)) / 86400000);
+  const rtf = new Intl.RelativeTimeFormat(ingles ? "en" : "pt-BR", { numeric: "auto" });
+  return dias < 30 ? rtf.format(-dias, "day") : rtf.format(-Math.round(dias / 30), "month");
+};
+
+const preenche = (lista, itens) => {
+  if (!lista || !itens.length) return;
+  lista.replaceChildren(...itens.map(([href, titulo, detalhe]) => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = titulo;
+    const span = document.createElement("span");
+    span.textContent = detalhe;
+    li.append(a, span);
+    return li;
+  }));
+};
+
+fetch("https://api.github.com/users/gabrielvictoraraujodacruz-create/repos?sort=pushed&per_page=10")
+  .then((r) => (r.ok ? r.json() : []))
+  .then((repos) => preenche(document.querySelector("[data-github]"), repos
+    .filter((r) => !r.fork && r.name !== "gabrielvictoraraujodacruz-create")
+    .slice(0, 5)
+    .map((r) => [r.html_url, r.name.replace(/[_-]+/g, " ").trim(), `${r.language || "Markdown"} · ${quando(r.pushed_at)}`])))
+  .catch(() => {});
+
+fetch("https://dev.to/api/articles?username=gabrielvictorcruz&per_page=5")
+  .then((r) => (r.ok ? r.json() : []))
+  .then((posts) => preenche(document.querySelector("[data-devto]"), posts
+    .map((p) => [p.url, p.title, `${quando(p.published_at)} · ${p.reading_time_minutes} min`])))
+  .catch(() => {});

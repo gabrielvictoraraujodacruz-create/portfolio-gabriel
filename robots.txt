@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gabrielvictoraraujodacruz-create.github.io/portfolio-gabriel/sitemap.xml

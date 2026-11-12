@@ -21,8 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/style.css?v=7">
-  <script src="../assets/js/main.js?v=7" defer></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=8">
+  <script src="../assets/js/main.js?v=8" defer></script>
 </head>
 <body>
   <svg class="icons" aria-hidden="true">
@@ -45,11 +45,11 @@
       <nav class="nav" id="menu" aria-label="Main">
         <ul>
           <li><a href="#sobre">About</a></li>
-          <li><a href="#experiencia">Experience</a></li>
-          <li><a href="#formacao">Education</a></li>
-          <li><a href="#tecnologias">Skills</a></li>
           <li><a href="#projetos">Projects</a></li>
           <li><a href="#ia">AI &amp; Automation</a></li>
+          <li><a href="#tecnologias">Skills</a></li>
+          <li><a href="#formacao">Education</a></li>
+          <li><a href="#experiencia">Experience</a></li>
           <li><a href="#contato">Contact</a></li>
         </ul>
       </nav>
@@ -77,7 +77,8 @@
           <li class="card fact"><small>Background</small><strong>Working since age 15</strong><span>Sales, management and technology</span></li>
         </ul>
         <div class="actions">
-          <a class="button primary" href="#experiencia">See my journey</a>
+          <a class="button primary" href="#projetos">See my projects</a>
+          <a class="button" href="../assets/cv/resume-gabriel-victor.pdf" download>Download résumé</a>
           <a class="button" href="#contato">Get in touch</a>
         </div>
       </div>
@@ -98,14 +99,467 @@
           <p>Those jobs taught me how to serve people well, organize inventory, deal with suppliers and keep daily operations running. They also showed me how much time is lost on tasks that could be simpler.</p>
           <p>Today I bring that perspective to technology. I am at the start of my Software Engineering degree and still have a lot to learn, but I come with an advantage: I know firsthand the problems a system needs to solve.</p>
         </div>
-        <div class="terminal">
+        <div class="terminal" data-terminal>
           <div class="terminal-bar"><i></i><i></i><i></i><span>~/gabriel/goal.txt</span></div>
-          <blockquote>I don't just want to write code. I want to understand where an operation gets stuck and use technology to make people's work simpler.</blockquote>
+          <div class="terminal-out" aria-live="polite"><p class="terminal-quote">I don't just want to write code. I want to understand where an operation gets stuck and use technology to make people's work simpler.</p></div>
+          <form class="terminal-in"><label for="cmd-en">$</label><input id="cmd-en" name="cmd" autocomplete="off" spellcheck="false" aria-label="Terminal command" placeholder="help"></form>
+          <p class="terminal-hint">type <b>help</b> and press Enter</p>
         </div>
       </div>
       <div class="gallery">
         <img src="../assets/img/sobre-1.jpg" width="640" height="800" loading="lazy" alt="Gabriel Victor, wearing glasses and a dark T-shirt, smiling slightly.">
         <img src="../assets/img/sobre-2.jpg" width="640" height="800" loading="lazy" alt="Gabriel Victor, wearing glasses and a white shirt, smiling.">
+      </div>
+    </section>
+
+    <section class="section container" id="projetos">
+      <div class="section-head">
+        <span class="label">Projects</span>
+        <h2>Academic and personal projects</h2>
+        <p>Projects I built on my own or in a group. The code from each course is under <a href="#tecnologias">Skills</a>.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card project" data-category="web">
+          <img src="../assets/img/og-en.jpg" width="1200" height="630" loading="lazy" alt="Cover of this portfolio, with the name Gabriel Victor and a terminal look.">
+          <div class="project-body">
+            <span class="chip quiet">Personal</span>
+            <h3>This portfolio</h3>
+            <p>Plain HTML, CSS and JavaScript, no framework. Portuguese and English, light and dark themes, an interactive terminal and live data from the GitHub and dev.to APIs. Hosted on GitHub Pages.</p>
+            <div class="subject-list"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">REST API</span></div>
+            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/portfolio-gabriel" target="_blank" rel="noopener">GitHub</a></div>
+          </div>
+        </article>
+        <article class="card project" data-category="web">
+          <img src="../assets/img/assistente-financeiro.jpg" width="800" height="500" loading="lazy" alt="Home page of the Virtual Finance Assistant, in Portuguese.">
+          <div class="project-body">
+            <span class="chip quiet">Group</span>
+            <h3>Finance Assistant</h3>
+            <p>Presentation page for an AI personal finance assistant, made for a Project Management course. It is a product proposal, not a finished app.</p>
+            <p class="credit">With Pedro Augusto Gomes Fernandes</p>
+            <div class="subject-list"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+            <div class="project-links">
+              <a href="https://gabrielvictoraraujodacruz-create.github.io/Projeto_Assistente_financeiro_GEP/" target="_blank" rel="noopener">View page</a>
+              <a href="https://github.com/gabrielvictoraraujodacruz-create/Projeto_Assistente_financeiro_GEP" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+        <article class="card project" data-category="web">
+          <img src="../assets/img/site-macabro.jpg" width="800" height="500" loading="lazy" alt="Home page of Site Macabro, with a full moon, a crow and bats.">
+          <div class="project-body">
+            <span class="chip quiet">Pair</span>
+            <h3>Site Macabro</h3>
+            <p>Halloween-themed website built with Bootstrap for my Front-End course.</p>
+            <p class="credit">With Guilherme Pontes</p>
+            <div class="subject-list"><span class="tag">HTML</span><span class="tag">Bootstrap</span></div>
+            <div class="project-links">
+              <a href="https://gabrielvictoraraujodacruz-create.github.io/Site_Macabro/" target="_blank" rel="noopener">View site</a>
+              <a href="https://github.com/gabrielvictoraraujodacruz-create/Site_Macabro" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+        <article class="card project" data-category="code">
+          <img class="banner" src="../assets/img/icone-git.jpg" width="800" height="200" loading="lazy" alt="Git branching symbol.">
+          <div class="project-body">
+            <span class="chip quiet">In progress</span>
+            <h3>Git Notebook</h3>
+            <p>My own Git cheat sheet, written in my own words: what a repository, commit and push are, the three places a change goes through, the basic commands and an exercise creating a repository from scratch.</p>
+            <div class="subject-list"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Git Bash</span></div>
+            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/java_diario/blob/main/git/CADERNO-GIT.md" target="_blank" rel="noopener">View notebook</a></div>
+          </div>
+        </article>
+        <article class="card project" data-category="ai">
+          <img class="banner" src="../assets/img/icone-hermes.jpg" width="800" height="200" loading="lazy" alt="Network of connected agents.">
+          <div class="project-body">
+            <span class="chip quiet">Personal</span>
+            <h3>Hermes and Claude Code</h3>
+            <p>A guide and lessons learned from using Hermes Agent, an open source AI agent, and Claude Code in my setup.</p>
+            <div class="subject-list"><span class="tag">Agents</span><span class="tag">Claude Code</span></div>
+            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Hermes_Agente_de_IA" target="_blank" rel="noopener">GitHub</a></div>
+          </div>
+        </article>
+        <article class="card project" data-category="design">
+          <img class="banner" src="../assets/img/icone-seminario.jpg" width="800" height="200" loading="lazy" alt="Presentation screen with a rising chart.">
+          <div class="project-body">
+            <span class="chip quiet">Group</span>
+            <h3>NexaTech Case Seminar</h3>
+            <p>Professional Design seminar on ethics, digital citizenship and rights, with slides, speaking script and technical opinion.</p>
+            <p class="credit">With Matheus, Pedro, Daniel and Guilherme</p>
+            <div class="subject-list"><span class="tag">Design</span><span class="tag">Digital ethics</span></div>
+            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/seminario-caso-nexatech" target="_blank" rel="noopener">GitHub</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid-2 live">
+        <article class="card">
+          <h3>GitHub activity</h3>
+          <p>Contributions over the last year, updated automatically.</p>
+          <a class="gh-chart" href="https://github.com/gabrielvictoraraujodacruz-create" target="_blank" rel="noopener"><img src="https://ghchart.rshah.org/0b6b5c/gabrielvictoraraujodacruz-create" width="663" height="104" loading="lazy" alt="Gabriel's GitHub contribution chart for the last year."></a>
+          <h3 class="mini-title">Most recently updated repositories</h3>
+          <ul class="link-list" data-github data-lang="en">
+            <li><a href="https://github.com/gabrielvictoraraujodacruz-create?tab=repositories" target="_blank" rel="noopener">See all repositories</a><span>List loaded straight from GitHub</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Articles on dev.to</h3>
+          <p>I write about what I learn and about automating the law office.</p>
+          <ul class="link-list" data-devto data-lang="en">
+            <li><a href="https://dev.to/gabrielvictorcruz" target="_blank" rel="noopener">See my dev.to profile</a><span>Articles loaded straight from dev.to</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="ia">
+      <div class="section-head">
+        <span class="label">AI &amp; Automation</span>
+        <h2>Artificial intelligence and automation</h2>
+        <p>This is the field that interests me most today. Here are the tools I use and what I have been studying, without claiming to be a specialist.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card ai-card">
+          <svg class="card-icon ic-star" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke="#ff9b73" stroke-width="3" stroke-linecap="round"><g class="f" style="--i:0" opacity="0"><circle cx="24" cy="24" r="2.4" fill="#ff9b73" stroke="none"/></g><g class="f" style="--i:1" opacity="0"><path d="M26.1 26.1L30.4 30.4M21.9 26.1L17.6 30.4M21.9 21.9L17.6 17.6M26.1 21.9L30.4 17.6"/></g><g class="f" style="--i:2" opacity="0"><path d="M28.0 24.0L37.0 24.0M26.0 27.5L30.5 35.3M22.0 27.5L17.5 35.3M20.0 24.0L11.0 24.0M22.0 20.5L17.5 12.7M26.0 20.5L30.5 12.7"/></g><g class="f" style="--i:3" opacity="1"><path d="M29.0 24.0L43.0 24.0M27.5 27.5L37.4 37.4M24.0 29.0L24.0 43.0M20.5 27.5L10.6 37.4M19.0 24.0L5.0 24.0M20.5 20.5L10.6 10.6M24.0 19.0L24.0 5.0M27.5 20.5L37.4 10.6"/></g><g class="f" style="--i:4" opacity="0"><path d="M27.5 26.0L37.0 31.5M24.0 28.0L24.0 39.0M20.5 26.0L11.0 31.5M20.5 22.0L11.0 16.5M24.0 20.0L24.0 9.0M27.5 22.0L37.0 16.5"/></g><g class="f" style="--i:5" opacity="0"><path d="M27.0 24.0L35.0 24.0M24.0 27.0L24.0 35.0M21.0 24.0L13.0 24.0M24.0 21.0L24.0 13.0"/></g></svg>
+          <h3>Claude Code</h3>
+          <p>I set up my environment my own way, with hooks, skills, subagents and memory.</p>
+        </article>
+        <article class="card ai-card">
+          <svg class="card-icon ic-pulse" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="12" width="24" height="24" rx="4" stroke="#adc6ff"/><rect x="19" y="19" width="10" height="10" rx="2" stroke="#83f3de"/><path d="M18 6v6M30 6v6M18 36v6M30 36v6M6 18h6M6 30h6M36 18h6M36 30h6" stroke="#adc6ff"/></svg>
+          <h3>AI Engineering</h3>
+          <p>In college I study how models work and how to write better prompts.</p>
+        </article>
+        <article class="card ai-card">
+          <svg class="card-icon ic-flap" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34c2-12 10-20 24-22-4 4-6 7-7 10 5-1 9-2 13-5-2 9-9 16-20 17z" stroke="#83f3de"/><path d="M14 36l-6 5" stroke="#83f3de"/></svg>
+          <h3>Autonomous agents</h3>
+          <p>I test agents that use tools and have memory, and I learn from the limits that show up.</p>
+        </article>
+        <article class="card ai-card">
+          <svg class="card-icon ic-float" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="22" height="22" rx="7" stroke="#adc6ff"/><rect x="20" y="20" width="22" height="22" rx="7" stroke="#ffe08a"/><circle cx="14" cy="14" r="1.6" fill="#adc6ff" stroke="none"/><circle cx="34" cy="34" r="1.6" fill="#ffe08a" stroke="none"/></svg>
+          <h3>Process automation</h3>
+          <p>I look for repetitive tasks at work that can become a script or a simpler workflow.</p>
+        </article>
+        <article class="card ai-card">
+          <svg class="card-icon ic-flow" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="18" width="10" height="12" rx="3" stroke="#83f3de"/><rect x="34" y="6" width="10" height="12" rx="3" stroke="#6bf8ba"/><rect x="34" y="30" width="10" height="12" rx="3" stroke="#6bf8ba"/><path class="dash" d="M14 24h8c4 0 4-12 12-12M22 24c4 0 4 12 12 12" stroke="#83f3de"/></svg>
+          <h3>Context and workflows</h3>
+          <p>I organize instructions, files and steps so AI works with the right information.</p>
+        </article>
+        <article class="card ai-card">
+          <svg class="card-icon ic-blink" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 15L7 24l9 9M32 15l9 9-9 9" stroke="#ffe08a"/><path class="spark" d="M24 12l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" stroke="#83f3de"/></svg>
+          <h3>AI-assisted development</h3>
+          <p>I use AI to learn and to code, and I stay responsible for understanding and reviewing the result.</p>
+        </article>
+      </div>
+      <h3 class="sub-title">Applied at work</h3>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Document generation</h3>
+          <p>Python scripts fill in the office's document templates. AI helps gather the information, and the final text always comes from the template.</p>
+        </article>
+        <article class="card">
+          <h3>Publication tracking</h3>
+          <p>A routine that queries public court APIs to help follow case updates, always with human review.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="tecnologias">
+      <div class="section-head">
+        <span class="label">Skills</span>
+        <h2>Technologies and knowledge</h2>
+        <p>No percentages: each item shows how I have worked with it so far.</p>
+      </div>
+      <ul class="legend">
+        <li><span class="level use">Hands-on</span> used at work or in projects</li>
+        <li><span class="level academic">Academic</span> studied in college</li>
+        <li><span class="level study">Learning</span> studying it now</li>
+      </ul>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Programming languages</h3>
+          <ul class="skills">
+            <li>Python <span class="level use">Hands-on</span></li>
+            <li>C <span class="level academic">Academic</span></li>
+            <li>JavaScript <span class="level academic">Academic</span></li>
+            <li>Java <span class="level study">Learning</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Web development</h3>
+          <ul class="skills">
+            <li>HTML <span class="level academic">Academic</span></li>
+            <li>CSS <span class="level academic">Academic</span></li>
+            <li>Bootstrap <span class="level academic">Academic</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Databases</h3>
+          <ul class="skills">
+            <li>SQL <span class="level academic">Academic</span></li>
+            <li>Data modeling and normalization <span class="level academic">Academic</span></li>
+            <li>MongoDB <span class="level study">Learning</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Artificial intelligence</h3>
+          <ul class="skills">
+            <li>Claude Code <span class="level use">Hands-on</span></li>
+            <li>Workflow automation <span class="level use">Hands-on</span></li>
+            <li>Prompt engineering <span class="level use">Hands-on</span></li>
+            <li>Autonomous agents <span class="level use">Hands-on</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Tools and productivity</h3>
+          <ul class="skills">
+            <li>Git and GitHub <span class="level use">Hands-on</span></li>
+            <li>VS Code <span class="level use">Hands-on</span></li>
+            <li>Figma, Miro and Canva <span class="level academic">Academic</span></li>
+            <li>Draw.io <span class="level academic">Academic</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Engineering fundamentals</h3>
+          <ul class="skills">
+            <li>Logic and algorithms <span class="level academic">Academic</span></li>
+            <li>Flowcharts <span class="level academic">Academic</span></li>
+            <li>Prototyping <span class="level academic">Academic</span></li>
+            <li>UX and user journey <span class="level academic">Academic</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <h3 class="sub-title">What I learned in each course</h3>
+      <p>Each card shows what I have studied so far, where I am now and the repository where I keep the code and notes.</p>
+      <details class="semestre" open>
+        <summary>2nd semester · in progress</summary>
+        <div class="grid-2">
+        <article class="card study">
+          <span class="chip">Unit 3 of 4</span>
+          <h3>Front-End Web Development</h3>
+          <p>HTML · CSS · JavaScript · Bootstrap</p>
+          <div class="subject-list">
+            <span class="tag">Page structure in HTML</span>
+            <span class="tag">Styling with CSS</span>
+            <span class="tag">Bootstrap grid and responsive layout</span>
+            <span class="tag">AI-built site (Stitch + Claude Code)</span>
+            <span class="tag">JS variables and conditionals</span>
+            <span class="tag">JS functions</span>
+          </div>
+          <p>Now: JavaScript for interfaces. Next: version control and deploy.</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Materia_de_html-" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip">Unit 3 of 4</span>
+          <h3>Algorithms and Computational Thinking</h3>
+          <p>C language · Flowgorithm · VisuAlg</p>
+          <div class="subject-list">
+            <span class="tag">Computational thinking and decomposition</span>
+            <span class="tag">Data types and scanf</span>
+            <span class="tag">if/else and switch</span>
+            <span class="tag">while, do while and for</span>
+            <span class="tag">break, continue and return</span>
+            <span class="tag">Arrays</span>
+            <span class="tag">Functions</span>
+            <span class="tag">Menu-driven systems (bank, stock)</span>
+          </div>
+          <p>Now: data structures, files and pointers in C. Next: sorting algorithms.</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Algoritmo_e_pensamento_computacional" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip">Unit 4 of 4</span>
+          <h3>Database Modeling</h3>
+          <p>MySQL · SQL · brModelo</p>
+          <div class="subject-list">
+            <span class="tag">Data vs. information</span>
+            <span class="tag">Conceptual, logical and physical models</span>
+            <span class="tag">Entities and attributes</span>
+            <span class="tag">Primary and foreign keys</span>
+            <span class="tag">1:1, 1:N and N:N cardinality</span>
+            <span class="tag">Normalization 1NF, 2NF and 3NF</span>
+            <span class="tag">CREATE TABLE</span>
+            <span class="tag">SELECT with WHERE</span>
+            <span class="tag">JOINs between tables</span>
+          </div>
+          <p>Now: building and querying databases in SQL, the course's last unit.</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Modelagem_de_banco_de_dados" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip">In progress</span>
+          <h3>Professional Development</h3>
+          <p>Career · ethics · digital citizenship</p>
+          <div class="subject-list">
+            <span class="tag">Professional image</span>
+            <span class="tag">Career planning</span>
+            <span class="tag">Ethics and digital rights</span>
+            <span class="tag">Group seminar</span>
+          </div>
+          <p>Group work: seminar on the NexaTech case.</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/seminario-caso-nexatech" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip quiet">Completed</span>
+          <h3>Cross-Cutting Themes</h3>
+          <p>UDF · 40 hours · 4 units</p>
+          <div class="subject-list">
+            <span class="tag">Human rights</span>
+            <span class="tag">Afro-Brazilian and Indigenous culture</span>
+            <span class="tag">Environment</span>
+            <span class="tag">Drug prevention</span>
+          </div>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Temas_Transversais" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        </div>
+      </details>
+
+      <details class="semestre">
+        <summary>1st semester · completed</summary>
+        <div class="grid-2">
+        <article class="card study">
+          <span class="chip quiet">Completed</span>
+          <h3>Computer Programming</h3>
+          <p>Python · VS Code</p>
+          <div class="subject-list">
+            <span class="tag">Input and output</span>
+            <span class="tag">Conditionals</span>
+            <span class="tag">Operators and calculations</span>
+            <span class="tag">Grade average with pass/fail</span>
+          </div>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/programacoes_de_computadores" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip quiet">Completed</span>
+          <h3>Prompt Engineering and AI Applications</h3>
+          <p>Python · Jupyter · Google Colab · Gemini</p>
+          <div class="subject-list">
+            <span class="tag">Tokens and probability</span>
+            <span class="tag">Good vs. bad prompts</span>
+            <span class="tag">AI-assisted programming</span>
+            <span class="tag">AI automations</span>
+            <span class="tag">Code testing</span>
+          </div>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/engenharia_de_prompt_aplicacoes_ai" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip quiet">Completed</span>
+          <h3>User Interface and Journey</h3>
+          <p>Figma · Miro · Canva</p>
+          <div class="subject-list">
+            <span class="tag">Personas</span>
+            <span class="tag">Guided interviews</span>
+            <span class="tag">Shadowing</span>
+            <span class="tag">User journey</span>
+            <span class="tag">Empathy map</span>
+            <span class="tag">App prototype</span>
+          </div>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Interface_e_jornada_do_usuario" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip quiet">Completed</span>
+          <h3>Computer Systems Prototyping</h3>
+          <p>Draw.io</p>
+          <div class="subject-list">
+            <span class="tag">Flowcharts</span>
+            <span class="tag">System diagrams</span>
+            <span class="tag">Low-fidelity prototypes</span>
+          </div>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/prototipagem_de_sistemas_computacionais" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        </div>
+      </details>
+
+      <details class="semestre">
+        <summary>On my own</summary>
+        <div class="grid-2">
+        <article class="card study">
+          <span class="chip">Phase 1 · day 3 of 30</span>
+          <h3>Java + Git</h3>
+          <p>30 minutes and one commit a day</p>
+          <div class="subject-list">
+            <span class="tag">First commit</span>
+            <span class="tag">How Java works</span>
+            <span class="tag">Primitive types</span>
+            <span class="tag">C → Python → Java comparison</span>
+          </div>
+          <p>Now: primitive types. After the 30 days, phase 2 is rewriting 14 of my Python programs in Java.</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/java_diario" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        <article class="card study">
+          <span class="chip">Learning</span>
+          <h3>MongoDB</h3>
+          <p>mongosh · CRUD Operations certificate</p>
+          <div class="subject-list">
+            <span class="tag">SQL vs. MongoDB</span>
+            <span class="tag">CRUD</span>
+            <span class="tag">Query filters ($gt, $or, regex)</span>
+            <span class="tag">sort, limit and skip</span>
+            <span class="tag">Indexes</span>
+            <span class="tag">Aggregation pipeline</span>
+            <span class="tag">Arrays ($push, $pull)</span>
+          </div>
+          <p>Next: document modeling, MongoDB Atlas and using it from Python.</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Estudos_MongoDB" target="_blank" rel="noopener">See the repository on GitHub</a></p>
+        </article>
+        </div>
+      </details>
+    </section>
+
+    <section class="section container" id="formacao">
+      <div class="section-head">
+        <span class="label">Education</span>
+        <h2>Academic background</h2>
+      </div>
+      <div class="grid-2">
+        <article class="card study">
+          <span class="chip">In progress</span>
+          <h3>Software Engineering</h3>
+          <p>UDF · 2nd semester</p>
+          <div class="subject-list">
+            <span class="tag">Programming logic</span>
+            <span class="tag">Python</span>
+            <span class="tag">C language</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL</span>
+            <span class="tag">NoSQL</span>
+            <span class="tag">Flowcharts</span>
+            <span class="tag">Design</span>
+            <span class="tag">Software Engineering fundamentals</span>
+            <span class="tag">AI Engineering</span>
+          </div>
+        </article>
+        <article class="card study">
+          <span class="chip quiet">Not completed</span>
+          <h3>Public Management</h3>
+          <p>IESB · 3 semesters completed</p>
+          <p>I completed three semesters and decided to move my career toward technology.</p>
+        </article>
+      </div>
+      <h3 class="sub-title">Certificates</h3>
+      <div class="grid-2">
+        <article class="card study">
+          <h3>CRUD Operations in MongoDB</h3>
+          <p>MongoDB University</p>
+          <p><a href="https://www.credly.com/badges/799efa1b-23fd-47b6-afb2-014512d4d337" target="_blank" rel="noopener">View on Credly</a></p>
+        </article>
+        <article class="card study">
+          <h3>Cross-Cutting Themes (Temas Transversais)</h3>
+          <p>UDF · 40 hours</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Temas_Transversais" target="_blank" rel="noopener">View on GitHub</a></p>
+        </article>
+      </div>
+      <h3 class="sub-title">Courses in progress</h3>
+      <div class="grid-2">
+        <article class="card study">
+          <span class="chip">In progress</span>
+          <h3>GitHub Foundations — Part 1 of 2</h3>
+          <p>Microsoft Academy · 6 hr 44 min learning path · 8 modules</p>
+          <p>Progress: 3/8 modules</p>
+          <p>Modules: Introduction to Git · Introduction to GitHub · GitHub's products · Code scanning · GitHub Copilot · Codespaces · GitHub Projects · Markdown</p>
+        </article>
+      </div>
+      <h3 class="sub-title">Additional studies</h3>
+      <div class="card">
+        <p>Outside of college I study programming, artificial intelligence, automation, software development, autonomous agents and process improvement.</p>
       </div>
     </section>
 
@@ -180,338 +634,6 @@
       </ol>
     </section>
 
-    <section class="section container" id="formacao">
-      <div class="section-head">
-        <span class="label">Education</span>
-        <h2>Academic background</h2>
-      </div>
-      <div class="grid-2">
-        <article class="card study">
-          <span class="chip">In progress</span>
-          <h3>Software Engineering</h3>
-          <p>UDF · 2nd semester</p>
-          <div class="subject-list">
-            <span class="tag">Programming logic</span>
-            <span class="tag">Python</span>
-            <span class="tag">C language</span>
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">SQL</span>
-            <span class="tag">NoSQL</span>
-            <span class="tag">Flowcharts</span>
-            <span class="tag">Design</span>
-            <span class="tag">Software Engineering fundamentals</span>
-            <span class="tag">AI Engineering</span>
-          </div>
-        </article>
-        <article class="card study">
-          <span class="chip quiet">Not completed</span>
-          <h3>Public Management</h3>
-          <p>IESB · 3 semesters completed</p>
-          <p>I completed three semesters and decided to move my career toward technology.</p>
-        </article>
-      </div>
-      <h3 class="sub-title">Certificates</h3>
-      <div class="grid-2">
-        <article class="card study">
-          <h3>CRUD Operations in MongoDB</h3>
-          <p>MongoDB University</p>
-          <p><a href="https://www.credly.com/badges/799efa1b-23fd-47b6-afb2-014512d4d337" target="_blank" rel="noopener">View on Credly</a></p>
-        </article>
-        <article class="card study">
-          <h3>Cross-Cutting Themes (Temas Transversais)</h3>
-          <p>UDF · 40 hours</p>
-          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Temas_Transversais" target="_blank" rel="noopener">View on GitHub</a></p>
-        </article>
-      </div>
-      <h3 class="sub-title">Courses in progress</h3>
-      <div class="grid-2">
-        <article class="card study">
-          <span class="chip">In progress</span>
-          <h3>GitHub Foundations — Part 1 of 2</h3>
-          <p>Microsoft Academy · 6 hr 44 min learning path · 8 modules</p>
-          <p>Progress: 3/8 modules</p>
-          <p>Modules: Introduction to Git · Introduction to GitHub · GitHub's products · Code scanning · GitHub Copilot · Codespaces · GitHub Projects · Markdown</p>
-        </article>
-      </div>
-      <h3 class="sub-title">Additional studies</h3>
-      <div class="card">
-        <p>Outside of college I study programming, artificial intelligence, automation, software development, autonomous agents and process improvement.</p>
-        <ul class="link-list">
-          <li><a href="https://github.com/gabrielvictoraraujodacruz-create/java_diario/blob/main/git/CADERNO-GIT.md" target="_blank" rel="noopener">Git Notebook</a><span>Self-taught Git, with the commands explained in my own words</span></li>
-          <li><a href="https://github.com/gabrielvictoraraujodacruz-create/programacoes_de_computadores" target="_blank" rel="noopener">Computer Programming</a><span>Python exercises from college</span></li>
-          <li><a href="https://github.com/gabrielvictoraraujodacruz-create/prototipagem_de_sistemas_computacionais" target="_blank" rel="noopener">Systems Prototyping</a><span>Course material</span></li>
-          <li><a href="https://github.com/gabrielvictoraraujodacruz-create/seminario-caso-nexatech" target="_blank" rel="noopener">NexaTech Case Seminar</a><span>Group work for Professional Design with Matheus, Pedro, Daniel and Guilherme</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section container" id="tecnologias">
-      <div class="section-head">
-        <span class="label">Skills</span>
-        <h2>Technologies and knowledge</h2>
-        <p>No percentages: each item shows how I have worked with it so far.</p>
-      </div>
-      <ul class="legend">
-        <li><span class="level use">Hands-on</span> used at work or in projects</li>
-        <li><span class="level academic">Academic</span> studied in college</li>
-        <li><span class="level study">Learning</span> studying it now</li>
-      </ul>
-      <div class="grid-3">
-        <article class="card">
-          <h3>Programming languages</h3>
-          <ul class="skills">
-            <li>Python <span class="level use">Hands-on</span></li>
-            <li>C <span class="level academic">Academic</span></li>
-            <li>JavaScript <span class="level academic">Academic</span></li>
-            <li>Java <span class="level study">Learning</span></li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Web development</h3>
-          <ul class="skills">
-            <li>HTML <span class="level academic">Academic</span></li>
-            <li>CSS <span class="level academic">Academic</span></li>
-            <li>Bootstrap <span class="level academic">Academic</span></li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Databases</h3>
-          <ul class="skills">
-            <li>SQL <span class="level academic">Academic</span></li>
-            <li>Data modeling and normalization <span class="level academic">Academic</span></li>
-            <li>MongoDB <span class="level study">Learning</span></li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Artificial intelligence</h3>
-          <ul class="skills">
-            <li>Claude Code <span class="level use">Hands-on</span></li>
-            <li>Workflow automation <span class="level use">Hands-on</span></li>
-            <li>Prompt engineering <span class="level use">Hands-on</span></li>
-            <li>Autonomous agents <span class="level use">Hands-on</span></li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Tools and productivity</h3>
-          <ul class="skills">
-            <li>Git and GitHub <span class="level use">Hands-on</span></li>
-            <li>VS Code <span class="level use">Hands-on</span></li>
-            <li>Figma, Miro and Canva <span class="level academic">Academic</span></li>
-            <li>Draw.io <span class="level academic">Academic</span></li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Engineering fundamentals</h3>
-          <ul class="skills">
-            <li>Logic and algorithms <span class="level academic">Academic</span></li>
-            <li>Flowcharts <span class="level academic">Academic</span></li>
-            <li>Prototyping <span class="level academic">Academic</span></li>
-            <li>UX and user journey <span class="level academic">Academic</span></li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section container" id="projetos">
-      <div class="section-head">
-        <span class="label">Projects</span>
-        <h2>Academic and personal projects</h2>
-        <p>Real work from my repositories. Much of it is study material, and it is here to show how I am progressing.</p>
-      </div>
-      <div class="filters" role="group" aria-label="Filter projects">
-        <button type="button" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-filter="web" aria-pressed="false">Web</button>
-        <button type="button" data-filter="code" aria-pressed="false">Programming</button>
-        <button type="button" data-filter="data" aria-pressed="false">Data</button>
-        <button type="button" data-filter="ai" aria-pressed="false">AI</button>
-        <button type="button" data-filter="design" aria-pressed="false">Design</button>
-      </div>
-      <div class="grid-3">
-        <article class="card project" data-category="web">
-          <img src="../assets/img/assistente-financeiro.jpg" width="800" height="500" loading="lazy" alt="Home page of the Virtual Finance Assistant, in Portuguese.">
-          <div class="project-body">
-            <span class="chip quiet">Group</span>
-            <h3>Finance Assistant</h3>
-            <p>Presentation page for an AI personal finance assistant, made for a Project Management course. It is a product proposal, not a finished app.</p>
-            <p class="credit">With Pedro Augusto Gomes Fernandes</p>
-            <div class="subject-list"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-            <div class="project-links">
-              <a href="https://gabrielvictoraraujodacruz-create.github.io/Projeto_Assistente_financeiro_GEP/" target="_blank" rel="noopener">View page</a>
-              <a href="https://github.com/gabrielvictoraraujodacruz-create/Projeto_Assistente_financeiro_GEP" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-        </article>
-        <article class="card project" data-category="web">
-          <img src="../assets/img/site-macabro.jpg" width="800" height="500" loading="lazy" alt="Home page of Site Macabro, with a full moon, a crow and bats.">
-          <div class="project-body">
-            <span class="chip quiet">Pair</span>
-            <h3>Site Macabro</h3>
-            <p>Halloween-themed website built with Bootstrap for my Front-End course.</p>
-            <p class="credit">With Guilherme Pontes</p>
-            <div class="subject-list"><span class="tag">HTML</span><span class="tag">Bootstrap</span></div>
-            <div class="project-links">
-              <a href="https://gabrielvictoraraujodacruz-create.github.io/Site_Macabro/" target="_blank" rel="noopener">View site</a>
-              <a href="https://github.com/gabrielvictoraraujodacruz-create/Site_Macabro" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-        </article>
-        <article class="card project" data-category="web">
-          <img src="../assets/img/front-end.jpg" width="800" height="450" loading="lazy" alt="Side-by-side examples of HTML, CSS and JavaScript code.">
-          <div class="project-body">
-            <span class="chip quiet">College</span>
-            <h3>Front-End for the Web</h3>
-            <p>Code from my HTML, CSS, JavaScript and Bootstrap classes, covering page structure, grids and responsive columns.</p>
-            <div class="subject-list"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Materia_de_html-" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="code">
-          <img class="banner" src="../assets/img/icone-c.jpg" width="800" height="200" loading="lazy" alt="Symbol of the C language.">
-          <div class="project-body">
-            <span class="chip quiet">College</span>
-            <h3>Algorithms in C</h3>
-            <p>Exercises on decisions, loops, arrays and functions, plus assignments such as a menu-based inventory control and class performance.</p>
-            <div class="subject-list"><span class="tag">C</span><span class="tag">Algorithms</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Algoritmo_e_pensamento_computacional" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="code">
-          <img class="banner" src="../assets/img/icone-java.jpg" width="800" height="200" loading="lazy" alt="Coffee cup, symbol of Java.">
-          <div class="project-body">
-            <span class="chip quiet">In progress</span>
-            <h3>Java Diário</h3>
-            <p>A study plan for Java and Git that compares concepts across C, Python and Java. Next, I will rewrite my Python programs in Java.</p>
-            <div class="subject-list"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">Git</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/java_diario" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="code">
-          <img class="banner" src="../assets/img/icone-git.jpg" width="800" height="200" loading="lazy" alt="Git branching symbol.">
-          <div class="project-body">
-            <span class="chip quiet">In progress</span>
-            <h3>Git Notebook</h3>
-            <p>My own Git cheat sheet, written in my own words: what a repository, commit and push are, the three places a change goes through, the basic commands and an exercise creating a repository from scratch.</p>
-            <div class="subject-list"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Git Bash</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/java_diario/blob/main/git/CADERNO-GIT.md" target="_blank" rel="noopener">View notebook</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="data">
-          <img class="banner" src="../assets/img/icone-mongo.jpg" width="800" height="200" loading="lazy" alt="Leaf, symbol of MongoDB.">
-          <div class="project-body">
-            <span class="chip quiet">Study</span>
-            <h3>MongoDB Studies</h3>
-            <p>Notes and mongosh examples on CRUD, filters, indexes and aggregation, started after a talk comparing SQL and MongoDB.</p>
-            <div class="subject-list"><span class="tag">MongoDB</span><span class="tag">NoSQL</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Estudos_MongoDB" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="data">
-          <img class="banner" src="../assets/img/icone-er.jpg" width="800" height="200" loading="lazy" alt="Two linked tables, symbol of data modeling.">
-          <div class="project-body">
-            <span class="chip quiet">College</span>
-            <h3>Database Modeling</h3>
-            <p>Class notes on the entity-relationship model, cardinality and normalization.</p>
-            <div class="subject-list"><span class="tag">ER model</span><span class="tag">SQL</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Modelagem_de_banco_de_dados" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="ai">
-          <img class="banner" src="../assets/img/icone-prompt.jpg" width="800" height="200" loading="lazy" alt="Terminal window with a prompt.">
-          <div class="project-body">
-            <span class="chip quiet">College</span>
-            <h3>Prompt Engineering</h3>
-            <p>Assignments on tokens and prompt quality, plus notebooks on AI-assisted programming and automation.</p>
-            <div class="subject-list"><span class="tag">Python</span><span class="tag">Jupyter</span><span class="tag">AI</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/engenharia_de_prompt_aplicacoes_ai" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="ai">
-          <img class="banner" src="../assets/img/icone-hermes.jpg" width="800" height="200" loading="lazy" alt="Network of connected agents.">
-          <div class="project-body">
-            <span class="chip quiet">Personal</span>
-            <h3>Hermes and Claude Code</h3>
-            <p>A guide and lessons learned from using Hermes Agent, an open source AI agent, and Claude Code in my setup.</p>
-            <div class="subject-list"><span class="tag">Agents</span><span class="tag">Claude Code</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Hermes_Agente_de_IA" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="code">
-          <img class="banner" src="../assets/img/icone-python.jpg" width="800" height="200" loading="lazy" alt="Python symbol, two rounded squares.">
-          <div class="project-body">
-            <span class="chip quiet">University</span>
-            <h3>Computer Programming</h3>
-            <p>Python exercise lists done in class: conditionals, even or odd, legal age, discount and pass/fail average.</p>
-            <div class="subject-list"><span class="tag">Python</span><span class="tag">Logic</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/programacoes_de_computadores" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="design">
-          <img class="banner" src="../assets/img/icone-seminario.jpg" width="800" height="200" loading="lazy" alt="Presentation screen with a rising chart.">
-          <div class="project-body">
-            <span class="chip quiet">Group</span>
-            <h3>NexaTech Case Seminar</h3>
-            <p>Professional Design seminar on ethics, digital citizenship and rights, with slides, speaking script and technical opinion.</p>
-            <p class="credit">With Matheus, Pedro, Daniel and Guilherme</p>
-            <div class="subject-list"><span class="tag">Design</span><span class="tag">Digital ethics</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/seminario-caso-nexatech" target="_blank" rel="noopener">GitHub</a></div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section container" id="ia">
-      <div class="section-head">
-        <span class="label">AI &amp; Automation</span>
-        <h2>Artificial intelligence and automation</h2>
-        <p>This is the field that interests me most today. Here are the tools I use and what I have been studying, without claiming to be a specialist.</p>
-      </div>
-      <div class="grid-3">
-        <article class="card ai-card">
-          <svg class="card-icon ic-star" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke="#ff9b73" stroke-width="3" stroke-linecap="round"><g class="f" style="--i:0" opacity="0"><circle cx="24" cy="24" r="2.4" fill="#ff9b73" stroke="none"/></g><g class="f" style="--i:1" opacity="0"><path d="M26.1 26.1L30.4 30.4M21.9 26.1L17.6 30.4M21.9 21.9L17.6 17.6M26.1 21.9L30.4 17.6"/></g><g class="f" style="--i:2" opacity="0"><path d="M28.0 24.0L37.0 24.0M26.0 27.5L30.5 35.3M22.0 27.5L17.5 35.3M20.0 24.0L11.0 24.0M22.0 20.5L17.5 12.7M26.0 20.5L30.5 12.7"/></g><g class="f" style="--i:3" opacity="1"><path d="M29.0 24.0L43.0 24.0M27.5 27.5L37.4 37.4M24.0 29.0L24.0 43.0M20.5 27.5L10.6 37.4M19.0 24.0L5.0 24.0M20.5 20.5L10.6 10.6M24.0 19.0L24.0 5.0M27.5 20.5L37.4 10.6"/></g><g class="f" style="--i:4" opacity="0"><path d="M27.5 26.0L37.0 31.5M24.0 28.0L24.0 39.0M20.5 26.0L11.0 31.5M20.5 22.0L11.0 16.5M24.0 20.0L24.0 9.0M27.5 22.0L37.0 16.5"/></g><g class="f" style="--i:5" opacity="0"><path d="M27.0 24.0L35.0 24.0M24.0 27.0L24.0 35.0M21.0 24.0L13.0 24.0M24.0 21.0L24.0 13.0"/></g></svg>
-          <h3>Claude Code</h3>
-          <p>I set up my environment my own way, with hooks, skills, subagents and memory.</p>
-        </article>
-        <article class="card ai-card">
-          <svg class="card-icon ic-pulse" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="12" width="24" height="24" rx="4" stroke="#adc6ff"/><rect x="19" y="19" width="10" height="10" rx="2" stroke="#83f3de"/><path d="M18 6v6M30 6v6M18 36v6M30 36v6M6 18h6M6 30h6M36 18h6M36 30h6" stroke="#adc6ff"/></svg>
-          <h3>AI Engineering</h3>
-          <p>In college I study how models work and how to write better prompts.</p>
-        </article>
-        <article class="card ai-card">
-          <svg class="card-icon ic-flap" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34c2-12 10-20 24-22-4 4-6 7-7 10 5-1 9-2 13-5-2 9-9 16-20 17z" stroke="#83f3de"/><path d="M14 36l-6 5" stroke="#83f3de"/></svg>
-          <h3>Autonomous agents</h3>
-          <p>I test agents that use tools and have memory, and I learn from the limits that show up.</p>
-        </article>
-        <article class="card ai-card">
-          <svg class="card-icon ic-float" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="22" height="22" rx="7" stroke="#adc6ff"/><rect x="20" y="20" width="22" height="22" rx="7" stroke="#ffe08a"/><circle cx="14" cy="14" r="1.6" fill="#adc6ff" stroke="none"/><circle cx="34" cy="34" r="1.6" fill="#ffe08a" stroke="none"/></svg>
-          <h3>Process automation</h3>
-          <p>I look for repetitive tasks at work that can become a script or a simpler workflow.</p>
-        </article>
-        <article class="card ai-card">
-          <svg class="card-icon ic-flow" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="18" width="10" height="12" rx="3" stroke="#83f3de"/><rect x="34" y="6" width="10" height="12" rx="3" stroke="#6bf8ba"/><rect x="34" y="30" width="10" height="12" rx="3" stroke="#6bf8ba"/><path class="dash" d="M14 24h8c4 0 4-12 12-12M22 24c4 0 4 12 12 12" stroke="#83f3de"/></svg>
-          <h3>Context and workflows</h3>
-          <p>I organize instructions, files and steps so AI works with the right information.</p>
-        </article>
-        <article class="card ai-card">
-          <svg class="card-icon ic-blink" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 15L7 24l9 9M32 15l9 9-9 9" stroke="#ffe08a"/><path class="spark" d="M24 12l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" stroke="#83f3de"/></svg>
-          <h3>AI-assisted development</h3>
-          <p>I use AI to learn and to code, and I stay responsible for understanding and reviewing the result.</p>
-        </article>
-      </div>
-      <h3 class="sub-title">Applied at work</h3>
-      <div class="grid-2">
-        <article class="card">
-          <h3>Document generation</h3>
-          <p>Python scripts fill in the office's document templates. AI helps gather the information, and the final text always comes from the template.</p>
-        </article>
-        <article class="card">
-          <h3>Publication tracking</h3>
-          <p>A routine that queries public court APIs to help follow case updates, always with human review.</p>
-        </article>
-      </div>
-    </section>
-
     <section class="section container" id="contato">
       <div class="section-head">
         <span class="label">Contact</span>
@@ -543,6 +665,11 @@
           <svg class="icon" aria-hidden="true"><use href="#i-text"/></svg>
           <div><strong>dev.to</strong><span>gabrielvictorcruz</span></div>
           <a class="button" href="https://dev.to/gabrielvictorcruz" target="_blank" rel="noopener">Open</a>
+        </div>
+        <div class="card contact">
+          <svg class="icon" aria-hidden="true"><use href="#i-text"/></svg>
+          <div><strong>Résumé</strong><span>One-page PDF</span></div>
+          <a class="button" href="../assets/cv/resume-gabriel-victor.pdf" download>Download</a>
         </div>
       </div>
       <p class="copy-status" role="status"></p>
