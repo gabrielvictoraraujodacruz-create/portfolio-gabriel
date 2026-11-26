@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratório de Front-End | Gabriel Victor</title>
+  <meta name="description" content="Tudo o que a matéria de Desenvolvimento Front-End para Web da UDF ensinou, funcionando numa página feita com Bootstrap 5.">
+  <link rel="canonical" href="https://gabrielvictoraraujodacruz-create.github.io/portfolio-gabriel/pt-BR/laboratorio.html">
+  <link rel="alternate" hreflang="en" href="https://gabrielvictoraraujodacruz-create.github.io/portfolio-gabriel/en/lab.html">
+  <meta name="theme-color" content="#101419">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <script>try{if(localStorage.getItem("tema")==="claro")document.documentElement.dataset.bsTheme="light"}catch(e){}</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/css/lab.css?v=1">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+  <script src="../assets/js/lab.js?v=1" defer></script>
+</head>
+<body>
+  <a class="visually-hidden-focusable btn btn-info position-absolute m-2" href="#conteudo">Pular para o conteúdo</a>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top" aria-label="Laboratório">
+    <div class="container">
+      <a class="navbar-brand font-monospace" href="index.html"><span class="text-info">GV</span> / laboratório</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-lab" aria-controls="menu-lab" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu-lab">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#mapa">Mapa</a></li>
+          <li class="nav-item"><a class="nav-link" href="#html">HTML5</a></li>
+          <li class="nav-item"><a class="nav-link" href="#css">CSS3</a></li>
+          <li class="nav-item"><a class="nav-link" href="#js">JavaScript</a></li>
+          <li class="nav-item"><a class="nav-link" href="#deploy">Deploy</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a class="btn btn-sm btn-outline-secondary" href="../en/lab.html" hreflang="en" lang="en">EN</a>
+          <a class="btn btn-sm btn-info" href="index.html">← Voltar ao portfólio</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="conteudo">
+    <header class="container py-5">
+      <span class="badge text-bg-info font-monospace mb-3">UDF · Engenharia de Software · 2º semestre</span>
+      <h1 class="display-5 fw-bold">Laboratório de Front-End</h1>
+      <p class="lead col-lg-8">A matéria de Desenvolvimento Front-End para Web tem 4 unidades. Esta página junta, funcionando, o que cada uma ensinou. O portfólio principal é feito em CSS puro; aqui uso <strong>Bootstrap 5</strong>, o framework da unidade 3.</p>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <span class="badge rounded-pill text-bg-secondary">HTML5</span>
+        <span class="badge rounded-pill text-bg-secondary">CSS3</span>
+        <span class="badge rounded-pill text-bg-secondary">JavaScript</span>
+        <span class="badge rounded-pill text-bg-secondary">Bootstrap 5</span>
+        <span class="badge rounded-pill text-bg-secondary">Git e GitHub Pages</span>
+      </div>
+    </header>
+
+    <section class="container pb-5" id="mapa">
+      <h2 class="h3 mb-3">Mapa da matéria</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+          <caption>As 4 unidades da matéria e onde cada uma aparece no meu portfólio.</caption>
+          <thead>
+            <tr><th scope="col">Unidade</th><th scope="col">O que ensinou</th><th scope="col">Onde aparece no portfólio</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">1 · Fundamentos da Web</th><td>HTML5 semântico, formulários, multimídia, canvas e SVG</td><td><code>header</code>, <code>main</code>, <code>article</code>, ícones em SVG animado, vídeos nos projetos, fundo em canvas</td></tr>
+            <tr><th scope="row">2 · CSS3</th><td>Flexbox, Grid, pseudo-classes, transições e animações</td><td>Layout em Grid, cards com efeito 3D, linha do tempo que desenha ao rolar, temas claro e escuro</td></tr>
+            <tr><th scope="row">3 · JavaScript</th><td>DOM, eventos, localStorage, frameworks e Bootstrap</td><td>Terminal interativo, Ctrl+K, dados ao vivo do GitHub e do dev.to, esta página</td></tr>
+            <tr><th scope="row">4 · Versionamento e deploy</th><td>Git, GitHub, deploy, IA no front-end e acessibilidade</td><td>Repositório no GitHub, publicação no GitHub Pages, ARIA e foco visível</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="container pb-5" id="html">
+      <h2 class="h3">Unidade 1 · HTML5</h2>
+      <p class="text-body-secondary">Multimídia e recursos gráficos, que no HTML5 dispensam plugins.</p>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <figure class="card h-100 m-0">
+            <video class="card-img-top" src="../assets/video/portfolio.mp4" poster="../assets/img/og-pt.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption class="card-body">
+              <h3 class="h5 card-title">&lt;video&gt;</h3>
+              <p class="card-text text-body-secondary">Gravação do meu portfólio rolando. O atributo <code>controls</code> dá play, pausa e tela cheia sem nenhum JavaScript.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <canvas id="quadro" class="card-img-top quadro" width="640" height="360" aria-label="Quadro para desenhar com o mouse ou o dedo"></canvas>
+            <div class="card-body">
+              <h3 class="h5 card-title">&lt;canvas&gt;</h3>
+              <p class="card-text text-body-secondary">Desenhe aqui com o mouse ou com o dedo. Cada traço é desenhado pelo JavaScript, ponto por ponto.</p>
+              <div class="d-flex flex-wrap gap-2" role="group" aria-label="Cor do pincel">
+                <button class="btn btn-sm btn-info cor" type="button" data-cor="#83f3de" aria-pressed="true">Verde-água</button>
+                <button class="btn btn-sm btn-outline-warning cor" type="button" data-cor="#ffe08a" aria-pressed="false">Amarelo</button>
+                <button class="btn btn-sm btn-outline-danger cor" type="button" data-cor="#ff9b73" aria-pressed="false">Laranja</button>
+                <button class="btn btn-sm btn-outline-secondary ms-auto" type="button" id="limpa-quadro">Limpar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container pb-5" id="css">
+      <h2 class="h3">Unidade 2 · CSS3 e o grid do Bootstrap</h2>
+      <p class="text-body-secondary">O grid do Bootstrap é feito com Flexbox. Mude o tamanho da janela: as colunas se reorganizam em cada ponto de quebra.</p>
+      <div class="row g-3 grid-demo text-center font-monospace small">
+        <div class="col-12 col-sm-6 col-lg-3"><div class="p-3 rounded">col-12 col-sm-6 col-lg-3</div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="p-3 rounded">col-12 col-sm-6 col-lg-3</div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="p-3 rounded">col-12 col-sm-6 col-lg-3</div></div>
+        <div class="col-12 col-sm-6 col-lg-3"><div class="p-3 rounded">col-12 col-sm-6 col-lg-3</div></div>
+      </div>
+      <p class="mt-3 font-monospace small">Largura atual: <span class="text-info" id="largura">–</span> · ponto de quebra: <span class="badge text-bg-info" id="breakpoint">–</span></p>
+      <div class="row g-3 mt-2">
+        <div class="col-md-4"><div class="card h-100 efeito girar"><div class="card-body"><h3 class="h6 font-monospace">transform: rotate</h3><p class="small text-body-secondary mb-0">Passe o mouse ou toque.</p></div></div></div>
+        <div class="col-md-4"><div class="card h-100 efeito subir"><div class="card-body"><h3 class="h6 font-monospace">transition + :hover</h3><p class="small text-body-secondary mb-0">Sobe e brilha suavemente.</p></div></div></div>
+        <div class="col-md-4"><div class="card h-100 efeito pulsar"><div class="card-body"><h3 class="h6 font-monospace">@keyframes</h3><p class="small text-body-secondary mb-0">Animação que se repete sozinha.</p></div></div></div>
+      </div>
+    </section>
+
+    <section class="container pb-5" id="js">
+      <h2 class="h3">Unidade 3 · JavaScript e componentes do Bootstrap</h2>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="accordion" id="perguntas">
+            <div class="accordion-item">
+              <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#p1" aria-expanded="true" aria-controls="p1">O que é o DOM?</button></h3>
+              <div id="p1" class="accordion-collapse collapse show" data-bs-parent="#perguntas"><div class="accordion-body">É a página transformada em objetos que o JavaScript consegue ler e mudar. O contador ao lado mexe no DOM a cada clique.</div></div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p2" aria-expanded="false" aria-controls="p2">Para que serve o localStorage?</button></h3>
+              <div id="p2" class="accordion-collapse collapse" data-bs-parent="#perguntas"><div class="accordion-body">Guarda dados no navegador mesmo depois de fechar a aba. É assim que o portfólio lembra se você escolheu o tema claro, e que o contador ao lado não zera.</div></div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p3" aria-expanded="false" aria-controls="p3">Bootstrap, React e Vue: qual a diferença?</button></h3>
+              <div id="p3" class="accordion-collapse collapse" data-bs-parent="#perguntas"><div class="accordion-body">O Bootstrap entrega estilos e componentes prontos. React e Vue organizam a interface em componentes que se atualizam sozinhos quando os dados mudam.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card h-100 text-center">
+            <div class="card-body d-flex flex-column justify-content-center gap-3">
+              <h3 class="h5">Eventos + DOM + localStorage</h3>
+              <p class="display-3 fw-bold text-info font-monospace mb-0" id="contador" aria-live="polite">0</p>
+              <div class="d-flex justify-content-center gap-2">
+                <button class="btn btn-outline-secondary" type="button" data-passo="-1" aria-label="Diminuir">−1</button>
+                <button class="btn btn-info" type="button" data-passo="1" aria-label="Aumentar">+1</button>
+                <button class="btn btn-outline-secondary" type="button" data-passo="0">Zerar</button>
+              </div>
+              <button class="btn btn-sm btn-link" type="button" id="dispara-toast">Mostrar um toast do Bootstrap</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container pb-5" id="deploy">
+      <h2 class="h3">Unidade 4 · Versionamento, deploy e acessibilidade</h2>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <dl class="row glossario mb-0">
+            <dt class="col-sm-4 font-monospace">commit</dt>
+            <dd class="col-sm-8">Uma foto do projeto num momento, com uma mensagem dizendo o que mudou.</dd>
+            <dt class="col-sm-4 font-monospace">branch</dt>
+            <dd class="col-sm-8">Uma linha paralela de trabalho, para testar algo sem mexer no que já funciona.</dd>
+            <dt class="col-sm-4 font-monospace">pull request</dt>
+            <dd class="col-sm-8">O pedido para juntar uma branch na principal, com espaço para revisão.</dd>
+            <dt class="col-sm-4 font-monospace">deploy</dt>
+            <dd class="col-sm-8">Colocar o site no ar. Este aqui está no GitHub Pages: cada <code>git push</code> publica de novo.</dd>
+            <dt class="col-sm-4 font-monospace">WCAG</dt>
+            <dd class="col-sm-8">As regras de acessibilidade da web, como contraste mínimo entre texto e fundo.</dd>
+            <dt class="col-sm-4 font-monospace">ARIA</dt>
+            <dd class="col-sm-8">Atributos que explicam para leitores de tela o que cada elemento faz.</dd>
+          </dl>
+        </div>
+        <aside class="col-lg-5">
+          <div class="card border-info h-100">
+            <div class="card-body">
+              <h3 class="h5">Acessibilidade nesta página</h3>
+              <ul class="small mb-0">
+                <li>Link “Pular para o conteúdo” (aperte Tab ao abrir a página)</li>
+                <li>Tabela com <code>caption</code> e <code>scope</code> nos cabeçalhos</li>
+                <li>Botões de cor com <code>aria-pressed</code></li>
+                <li>Contador anunciado com <code>aria-live</code></li>
+                <li>Animações desligadas para quem pede menos movimento</li>
+                <li>Tema claro ou escuro, o mesmo que você escolheu no portfólio</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="aviso" class="toast" role="status" aria-live="polite" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto font-monospace">bootstrap.Toast</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
+      </div>
+      <div class="toast-body">Este aviso é um componente do Bootstrap chamado pelo JavaScript.</div>
+    </div>
+  </div>
+
+  <footer class="border-top py-4">
+    <div class="container d-flex flex-wrap justify-content-between gap-2 small text-body-secondary">
+      <span>Gabriel Victor Araujo da Cruz · Laboratório de Front-End</span>
+      <a href="index.html">Voltar ao portfólio</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -21,8 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/style.css?v=8">
-  <script src="../assets/js/main.js?v=8" defer></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=9">
+  <script src="../assets/js/main.js?v=9" defer></script>
 </head>
 <body>
   <svg class="icons" aria-hidden="true">
@@ -88,6 +88,16 @@
       </figure>
     </section>
 
+    <section class="container stats-band" aria-label="Em números">
+      <ul class="stats">
+        <li class="card stat"><strong data-stat="repos">18</strong><span>repositórios públicos no GitHub</span></li>
+        <li class="card stat"><strong data-stat="langs">6</strong><span>linguagens nos meus repositórios</span></li>
+        <li class="card stat"><strong data-stat="materias">9</strong><span>matérias cursadas na UDF</span></li>
+        <li class="card stat"><strong data-stat="java">3</strong><span>dias do desafio de Java</span></li>
+      </ul>
+      <p class="stats-note">números atualizados ao vivo pelo GitHub</p>
+    </section>
+
     <section class="section container" id="sobre">
       <div class="section-head">
         <span class="label">Sobre mim</span>
@@ -120,7 +130,7 @@
       </div>
       <div class="grid-3">
         <article class="card project" data-category="web">
-          <img src="../assets/img/og-pt.jpg" width="1200" height="630" loading="lazy" alt="Capa deste portfólio, com o nome Gabriel Victor e o visual de terminal.">
+          <video src="../assets/video/portfolio.mp4" poster="../assets/img/og-pt.jpg" width="640" height="360" muted loop playsinline preload="none" aria-label="Prévia em vídeo deste portfólio, rolando a página."></video>
           <div class="project-body">
             <span class="chip quiet">Pessoal</span>
             <h3>Este portfólio</h3>
@@ -130,7 +140,7 @@
           </div>
         </article>
         <article class="card project" data-category="web">
-          <img src="../assets/img/assistente-financeiro.jpg" width="800" height="500" loading="lazy" alt="Página inicial do Assistente Virtual de Consulta de Finanças.">
+          <video src="../assets/video/assistente-financeiro.mp4" poster="../assets/img/assistente-financeiro.jpg" width="640" height="360" muted loop playsinline preload="none" aria-label="Prévia em vídeo do Assistente Virtual de Consulta de Finanças, rolando a página."></video>
           <div class="project-body">
             <span class="chip quiet">Em grupo</span>
             <h3>Assistente Financeiro</h3>
@@ -144,7 +154,7 @@
           </div>
         </article>
         <article class="card project" data-category="web">
-          <img src="../assets/img/site-macabro.jpg" width="800" height="500" loading="lazy" alt="Página inicial do Site Macabro, com lua cheia, corvo e morcegos.">
+          <video src="../assets/video/site-macabro.mp4" poster="../assets/img/site-macabro.jpg" width="640" height="360" muted loop playsinline preload="none" aria-label="Prévia em vídeo do Site Macabro, com lua cheia, corvo e morcegos."></video>
           <div class="project-body">
             <span class="chip quiet">Em dupla</span>
             <h3>Site Macabro</h3>
@@ -189,6 +199,15 @@
           </div>
         </article>
       </div>
+
+      <a class="card lab-banner" href="laboratorio.html">
+        <div>
+          <span class="label">Laboratório</span>
+          <h3>Tudo o que a matéria de Front-End ensinou, funcionando</h3>
+          <p>Bootstrap, tabela, canvas, vídeo e acessibilidade numa página só.</p>
+        </div>
+        <span class="button">Abrir o laboratório →</span>
+      </a>
 
       <div class="grid-2 live">
         <article class="card">
@@ -249,14 +268,28 @@
         </article>
       </div>
       <h3 class="sub-title">Aplicado no trabalho</h3>
+      <p class="sub-lead">Dois fluxos que montei no escritório. Aqui aparece só o caminho que a informação percorre, sem nenhum dado de cliente.</p>
       <div class="grid-2">
         <article class="card">
           <h3>Geração de documentos</h3>
           <p>Scripts em Python preenchem modelos de documentos do escritório. A IA ajuda a reunir as informações, e o texto final vem sempre do modelo.</p>
+          <ol class="fluxo" style="--n: 5">
+            <li><b>01</b>Ficha do cliente</li>
+            <li><b>02</b>Script em Python</li>
+            <li><b>03</b>Modelo do escritório</li>
+            <li><b>04</b>Conferência humana</li>
+            <li><b>05</b>Documento pronto</li>
+          </ol>
         </article>
         <article class="card">
           <h3>Acompanhamento de publicações</h3>
           <p>Rotina que consulta APIs públicas do Judiciário para ajudar a acompanhar andamentos, sempre com conferência humana.</p>
+          <ol class="fluxo" style="--n: 4">
+            <li><b>01</b>APIs públicas do Judiciário</li>
+            <li><b>02</b>Consulta diária automática</li>
+            <li><b>03</b>Lista do que mudou</li>
+            <li><b>04</b>Conferência humana</li>
+          </ol>
         </article>
       </div>
     </section>
@@ -679,6 +712,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>Gabriel Victor Araujo da Cruz</span>
+      <span class="footer-hint">Aperte <kbd>Ctrl</kbd> <kbd>K</kbd> para navegar · tem um segredo escondido</span>
       <a href="#inicio">Voltar ao topo</a>
     </div>
   </footer>
