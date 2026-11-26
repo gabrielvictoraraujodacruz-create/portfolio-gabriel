@@ -2700,3 +2700,11 @@ kbd {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   line-height: 1.15;
 }
+
+@media (min-width: 821px) {
+  .contact-list > .contact:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 8px);
+  }
+}
