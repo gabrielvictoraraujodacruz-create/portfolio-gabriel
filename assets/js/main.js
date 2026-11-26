@@ -851,7 +851,7 @@ function abreJogo() {
     const cor = getComputedStyle(raiz).getPropertyValue("--glow").trim();
     ctx.clearRect(0, 0, 320, 320);
     const pulso = 1 + 0.08 * Math.sin(agora / 160);
-    const surge = Math.min(1, (agora - mordida) / 180);
+    const surge = Math.min(1, Math.max(0, (agora - mordida) / 180));
     ctx.fillStyle = "#ff8a65";
     ctx.beginPath();
     ctx.arc((comida.x + 0.5) * celula, (comida.y + 0.5) * celula, celula * 0.34 * pulso * surge, 0, Math.PI * 2);
@@ -920,6 +920,7 @@ function abreJogo() {
     } else cobra.pop();
   };
   const ciclo = (agora) => {
+    quadro = requestAnimationFrame(ciclo);
     if (estado === "rodando") {
       if (agora - ultimo > 500) ultimo = agora - intervalo();
       while (estado === "rodando" && agora - ultimo >= intervalo()) {
@@ -929,7 +930,6 @@ function abreJogo() {
     }
     const fracao = estado === "rodando" ? Math.min(1, (agora - ultimo) / intervalo()) : 1;
     desenha(agora, fracao);
-    quadro = requestAnimationFrame(ciclo);
   };
   const vira = (x, y) => {
     if (estado === "fim") reinicia();
