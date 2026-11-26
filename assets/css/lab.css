@@ -117,3 +117,110 @@ html {
   color: var(--bs-info);
   font-weight: 600;
 }
+
+.etapas-motor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  list-style: none;
+  counter-reset: etapa;
+}
+
+.etapas-motor li {
+  padding: 4px 10px;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 999px;
+  color: var(--bs-secondary-color);
+  counter-increment: etapa;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.etapas-motor li::before {
+  content: counter(etapa) ". ";
+}
+
+.etapas-motor li.feito {
+  border-color: var(--bs-info);
+  background: rgba(var(--bs-info-rgb), 0.15);
+  color: var(--bs-body-color);
+}
+
+.etapas-motor li.erro {
+  border-color: var(--bs-danger);
+  background: rgba(var(--bs-danger-rgb), 0.15);
+  color: var(--bs-body-color);
+}
+
+.contrato {
+  padding: 24px 28px;
+  border-radius: 8px;
+  background: #fbfaf6;
+  color: #1f2328;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.contrato h4 {
+  margin-bottom: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.contrato .aviso-demo {
+  margin-bottom: 16px;
+  color: #8a5a00;
+  font-family: system-ui, sans-serif;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.contrato p {
+  text-align: justify;
+}
+
+.contrato mark {
+  padding: 0 2px;
+  border-radius: 2px;
+  background: #d8f5ee;
+  color: inherit;
+}
+
+.contrato .data {
+  margin-top: 18px;
+  text-align: right;
+}
+
+.contrato .assinatura {
+  width: 60%;
+  margin: 36px auto 0;
+  padding-top: 4px;
+  border-top: 1px solid #1f2328;
+  text-align: center;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #contrato-saida,
+  #contrato-saida * {
+    visibility: visible;
+  }
+
+  #contrato-saida {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .contrato mark {
+    background: none;
+  }
+}

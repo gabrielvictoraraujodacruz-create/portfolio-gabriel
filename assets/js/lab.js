@@ -73,3 +73,87 @@ try {
   achados.add("lab");
   localStorage.setItem("segredos", JSON.stringify([...achados]));
 } catch (e) {}
+
+const ficha = document.getElementById("ficha");
+if (ficha) {
+  const modelo = document.getElementById("modelo-contrato");
+  const saida = document.getElementById("contrato-saida");
+  const faltando = document.getElementById("faltando");
+  const tempo = document.getElementById("tempo-motor");
+  const imprime = document.getElementById("imprime");
+  const etapas = [...document.querySelectorAll(".etapas-motor li")];
+  const ingles = document.documentElement.lang === "en";
+  const feminino = JSON.parse(modelo.dataset.f);
+  const masculino = JSON.parse(modelo.dataset.m);
+  const campos = [...ficha.querySelectorAll("[data-campo]")];
+  document.getElementById("modelo-texto").textContent = modelo.innerHTML.replace(/<[^>]+>/g, "").trim();
+
+  const escapa = (texto) => texto.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+  const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+  const marca = (i, estado) => { if (etapas[i]) etapas[i].className = estado; };
+
+  const exemplos = ingles
+    ? { NOME: "Maria Example Santos", NACIONALIDADE: "Brazilian", ESTADO_CIVIL: "widowed", PROFISSAO: "seamstress", CPF: "123.456.789-09", ENDERECO: "Block 10, Set B, House 5, Ceilândia, Brasília", CEP: "72200-000", BENEFICIO: "survivor's pension" }
+    : { NOME: "Maria Exemplo dos Santos", NACIONALIDADE: "brasileira", ESTADO_CIVIL: "viúva", PROFISSAO: "costureira", CPF: "123.456.789-09", ENDERECO: "Quadra 10, Conjunto B, Casa 5, Ceilândia, Brasília/DF", CEP: "72200-000", BENEFICIO: "pensão por morte" };
+
+  document.getElementById("exemplo").addEventListener("click", () => {
+    campos.forEach((campo) => { campo.value = exemplos[campo.dataset.campo]; });
+  });
+
+  ficha.addEventListener("reset", () => {
+    etapas.forEach((_, i) => marca(i, ""));
+    [saida, faltando, tempo, imprime].forEach((el) => { el.hidden = true; });
+  });
+
+  ficha.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    etapas.forEach((_, i) => marca(i, ""));
+    [saida, faltando, tempo, imprime].forEach((el) => { el.hidden = true; });
+    const inicio = performance.now();
+
+    marca(0, "feito");
+    const dados = Object.fromEntries(campos.map((campo) => [campo.dataset.campo, campo.value.trim()]));
+    await espera(250);
+
+    const problemas = campos.filter((campo) => {
+      const valor = campo.value.trim();
+      return !valor || (campo.dataset.formato && !new RegExp(campo.dataset.formato).test(valor));
+    });
+    if (problemas.length) {
+      marca(1, "erro");
+      faltando.textContent = `${modelo.dataset.falta} ${problemas.map((campo) => {
+        const rotulo = ficha.querySelector(`label[for="${campo.id}"]`).textContent;
+        return campo.value.trim() ? `${rotulo} (${modelo.dataset.formatoMsg})` : rotulo;
+      }).join(", ")}`;
+      faltando.hidden = false;
+      problemas[0].focus();
+      return;
+    }
+    marca(1, "feito");
+    await espera(250);
+
+    let texto = modelo.innerHTML;
+    marca(2, "feito");
+    await espera(250);
+
+    const genero = dados.ESTADO_CIVIL.endsWith("a") ? feminino : masculino;
+    const valores = {
+      ...dados,
+      ...genero,
+      DATA_EXTENSO: new Date().toLocaleDateString(ingles ? "en" : "pt-BR", { day: "numeric", month: "long", year: "numeric" }),
+    };
+    texto = texto.replace(/\{\{([A-Z_]+)\}\}/g, (marcador, nome) => (nome in valores ? `<mark>${escapa(valores[nome])}</mark>` : marcador));
+    marca(3, "feito");
+    await espera(250);
+
+    saida.innerHTML = texto;
+    saida.hidden = false;
+    imprime.hidden = false;
+    marca(4, "feito");
+    const ms = Math.max(1, Math.round(performance.now() - inicio - 1000));
+    tempo.textContent = modelo.dataset.tempo.replace("{ms}", ms);
+    tempo.hidden = false;
+  });
+
+  imprime.addEventListener("click", () => print());
+}

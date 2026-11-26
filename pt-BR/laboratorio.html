@@ -11,9 +11,9 @@
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <script>try{if(localStorage.getItem("tema")==="claro")document.documentElement.dataset.bsTheme="light"}catch(e){}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/lab.css?v=2">
+  <link rel="stylesheet" href="../assets/css/lab.css?v=3">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
-  <script src="../assets/js/lab.js?v=2" defer></script>
+  <script src="../assets/js/lab.js?v=3" defer></script>
 </head>
 <body>
   <a class="visually-hidden-focusable btn btn-info position-absolute m-2" href="#conteudo">Pular para o conteúdo</a>
@@ -32,6 +32,7 @@
           <li class="nav-item"><a class="nav-link" href="#js">JavaScript</a></li>
           <li class="nav-item"><a class="nav-link" href="#deploy">Deploy</a></li>
           <li class="nav-item"><a class="nav-link" href="#bastidores">Bastidores</a></li>
+          <li class="nav-item"><a class="nav-link" href="#demo-motor">Demo</a></li>
         </ul>
         <div class="d-flex gap-2">
           <a class="btn btn-sm btn-outline-secondary" href="../en/lab.html" hreflang="en" lang="en">EN</a>
@@ -281,7 +282,7 @@ if (cabeca.x === comida.x &amp;&amp; cabeca.y === comida.y) {
   trocar cada marcador ({{NOME}}, {{CPF}}...) pelo dado
   salvar na pasta do cliente
   mandar para a impressora certa</code></pre>
-              <p class="small text-body-secondary mb-0">Só o fluxo. O código e os modelos do escritório não são públicos, porque envolvem dados de clientes.</p>
+              <p class="small text-body-secondary mb-0">Só o fluxo. O código e os modelos do escritório não são públicos, porque envolvem dados de clientes. <a href="#demo-motor">Teste a demonstração com um cliente fictício.</a></p>
             </div>
           </div>
         </div>
@@ -307,6 +308,54 @@ if (cabeca.x === comida.x &amp;&amp; cabeca.y === comida.y) {
           </div>
         </div>
       </div>
+
+    <section class="container pb-5" id="demo-motor">
+      <h2 class="h3">Demonstração do motor de contratos</h2>
+      <p class="text-body-secondary col-lg-9">O mesmo caminho do motor que uso no escritório, rodando aqui no navegador: ler a ficha, conferir os campos, abrir o modelo, trocar cada marcador pelo dado e entregar o contrato. O modelo e o cliente são fictícios. No escritório o motor é em Python e gera o arquivo do Word.</p>
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <form class="card card-body" id="ficha" novalidate>
+            <h3 class="h6 font-monospace text-info mb-3">ficha do cliente</h3>
+            <div class="mb-2"><label class="form-label small" for="f-nome">Nome completo</label><input class="form-control form-control-sm" id="f-nome" data-campo="NOME" required></div>
+            <div class="row g-2 mb-2">
+              <div class="col-6"><label class="form-label small" for="f-nac">Nacionalidade</label><input class="form-control form-control-sm" id="f-nac" data-campo="NACIONALIDADE" required></div>
+              <div class="col-6"><label class="form-label small" for="f-civil">Estado civil</label><select class="form-select form-select-sm" id="f-civil" data-campo="ESTADO_CIVIL" required><option value=""></option><option>solteiro</option><option>solteira</option><option>casado</option><option>casada</option><option>divorciado</option><option>divorciada</option><option>viúvo</option><option>viúva</option></select></div>
+            </div>
+            <div class="row g-2 mb-2">
+              <div class="col-6"><label class="form-label small" for="f-prof">Profissão</label><input class="form-control form-control-sm" id="f-prof" data-campo="PROFISSAO" required></div>
+              <div class="col-6"><label class="form-label small" for="f-cpf">CPF</label><input class="form-control form-control-sm font-monospace" id="f-cpf" data-campo="CPF" inputmode="numeric" placeholder="000.000.000-00" data-formato="^\d{3}\.\d{3}\.\d{3}-\d{2}$" required></div>
+            </div>
+            <div class="mb-2"><label class="form-label small" for="f-end">Endereço</label><input class="form-control form-control-sm" id="f-end" data-campo="ENDERECO" required></div>
+            <div class="row g-2 mb-3">
+              <div class="col-5"><label class="form-label small" for="f-cep">CEP</label><input class="form-control form-control-sm font-monospace" id="f-cep" data-campo="CEP" inputmode="numeric" placeholder="00000-000" data-formato="^\d{5}-\d{3}$" required></div>
+              <div class="col-7"><label class="form-label small" for="f-ben">Benefício</label><select class="form-select form-select-sm" id="f-ben" data-campo="BENEFICIO" required><option value=""></option><option>BPC/LOAS</option><option>aposentadoria por idade</option><option>auxílio por incapacidade temporária</option><option>pensão por morte</option><option>salário-maternidade</option></select></div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-info btn-sm" type="submit">Gerar contrato</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" id="exemplo">Preencher com cliente fictício</button>
+              <button class="btn btn-link btn-sm ms-auto" type="reset">Limpar</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-7">
+          <ol class="etapas-motor font-monospace small" aria-live="polite"><li>ler a ficha</li><li>conferir os campos</li><li>abrir o modelo</li><li>trocar os marcadores</li><li>contrato pronto</li></ol>
+          <div class="alert alert-warning small py-2" id="faltando" role="alert" hidden></div>
+          <article class="contrato" id="contrato-saida" hidden></article>
+          <p class="small text-body-secondary mt-2" id="tempo-motor" hidden></p>
+          <div class="d-flex flex-wrap gap-2 mt-2">
+            <button class="btn btn-outline-info btn-sm" type="button" id="imprime" hidden>Imprimir o contrato</button>
+            <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#modelo-cru" aria-expanded="false" aria-controls="modelo-cru">Ver o modelo com os marcadores</button>
+          </div>
+          <div class="collapse mt-2" id="modelo-cru"><pre class="codigo mb-0" id="modelo-texto"></pre></div>
+        </div>
+      </div>
+      <template id="modelo-contrato" data-f='{"INSCRITO":"inscrita","DOMICILIADO":"domiciliada","O_CONTRATANTE":"A contratante"}' data-m='{"INSCRITO":"inscrito","DOMICILIADO":"domiciliado","O_CONTRATANTE":"O contratante"}' data-tempo="Gerado em {ms} ms. No escritório, com Word, conferência e impressão, leva cerca de 1 minuto; à mão levava uns 15." data-falta="Falta preencher:" data-formato-msg="formato inválido"><h4>CONTRATO DE PRESTAÇÃO DE SERVIÇOS</h4>
+<p class="aviso-demo">Modelo fictício para demonstração. Não é o contrato do escritório e não tem valor jurídico.</p>
+<p><b>CONTRATANTE:</b> {{NOME}}, {{NACIONALIDADE}}, {{ESTADO_CIVIL}}, {{PROFISSAO}}, {{INSCRITO}} no CPF sob o nº {{CPF}}, residente e {{DOMICILIADO}} em {{ENDERECO}}, CEP {{CEP}}.</p>
+<p><b>OBJETO:</b> acompanhamento do pedido de {{BENEFICIO}} junto ao INSS, da organização dos documentos até a decisão.</p>
+<p><b>OBRIGAÇÕES:</b> {{O_CONTRATANTE}} se compromete a entregar os documentos pedidos e a informar qualquer mudança de endereço.</p>
+<p class="data">Brasília/DF, {{DATA_EXTENSO}}.</p>
+<p class="assinatura">{{NOME}}</p></template>
     </section>
   </main>
 
