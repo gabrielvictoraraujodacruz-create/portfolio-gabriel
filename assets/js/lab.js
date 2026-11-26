@@ -96,6 +96,16 @@ if (ficha) {
     ? { NOME: "Maria Example Santos", NACIONALIDADE: "Brazilian", ESTADO_CIVIL: "widowed", PROFISSAO: "seamstress", CPF: "123.456.789-09", ENDERECO: "Block 10, Set B, House 5, Ceilândia, Brasília", CEP: "72200-000", BENEFICIO: "survivor's pension" }
     : { NOME: "Maria Exemplo dos Santos", NACIONALIDADE: "brasileira", ESTADO_CIVIL: "viúva", PROFISSAO: "costureira", CPF: "123.456.789-09", ENDERECO: "Quadra 10, Conjunto B, Casa 5, Ceilândia, Brasília/DF", CEP: "72200-000", BENEFICIO: "pensão por morte" };
 
+  const mascaras = {
+    "f-cpf": [11, (d) => d.replace(/^(\d{3})(\d)/, "$1.$2").replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3").replace(/\.(\d{3})(\d{1,2})$/, ".$1-$2")],
+    "f-cep": [8, (d) => d.replace(/^(\d{5})(\d)/, "$1-$2")],
+  };
+  Object.entries(mascaras).forEach(([id, [limite, formata]]) => {
+    document.getElementById(id).addEventListener("input", (e) => {
+      e.target.value = formata(e.target.value.replace(/\D/g, "").slice(0, limite));
+    });
+  });
+
   document.getElementById("exemplo").addEventListener("click", () => {
     campos.forEach((campo) => { campo.value = exemplos[campo.dataset.campo]; });
   });
