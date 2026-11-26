@@ -536,12 +536,11 @@ document.querySelectorAll(".project video").forEach((video) => {
   }
 });
 
-const hero = document.querySelector(".hero");
-if (hero && !reducedMotion) {
+if (!reducedMotion) {
   const tela = document.createElement("canvas");
   tela.className = "rede";
   tela.setAttribute("aria-hidden", "true");
-  hero.append(tela);
+  document.body.prepend(tela);
   const ctx = tela.getContext("2d");
   const alcance = 130;
   let pontos = [];
@@ -552,12 +551,12 @@ if (hero && !reducedMotion) {
   let rodando = false;
   const monta = () => {
     const escala = devicePixelRatio || 1;
-    largura = tela.clientWidth;
-    altura = tela.clientHeight;
+    largura = innerWidth;
+    altura = innerHeight;
     tela.width = largura * escala;
     tela.height = altura * escala;
     ctx.setTransform(escala, 0, 0, escala, 0, 0);
-    const total = Math.min(90, Math.round((largura * altura) / 11000));
+    const total = Math.min(110, Math.round((largura * altura) / 12000));
     pontos = Array.from({ length: total }, () => ({
       x: Math.random() * largura,
       y: Math.random() * altura,
@@ -605,17 +604,15 @@ if (hero && !reducedMotion) {
     rodando = true;
     requestAnimationFrame(desenha);
   };
-  hero.addEventListener("pointermove", (e) => {
-    const r = tela.getBoundingClientRect();
-    mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
-  });
-  hero.addEventListener("pointerleave", () => { mouse = null; });
-  new ResizeObserver(monta).observe(tela);
-  new IntersectionObserver(([entry]) => {
-    visivel = entry.isIntersecting;
+  addEventListener("pointermove", (e) => { mouse = { x: e.clientX, y: e.clientY }; });
+  addEventListener("pointerout", (e) => { if (!e.relatedTarget) mouse = null; });
+  addEventListener("resize", monta);
+  document.addEventListener("visibilitychange", () => {
+    visivel = !document.hidden;
     if (visivel) liga();
-  }).observe(hero);
+  });
   monta();
+  liga();
 }
 
 const header = document.querySelector(".header-inner");
