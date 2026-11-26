@@ -132,7 +132,7 @@ if (frase && !reducedMotion) {
 const raiz = document.documentElement;
 const ingles = raiz.lang.startsWith("en");
 const t = (pt, en) => (ingles ? en : pt);
-const cv = t("../assets/cv/curriculo-gabriel-victor.pdf", "../assets/cv/resume-gabriel-victor.pdf");
+const avisoCv = t("Meu currículo está em manutenção: estou desenvolvendo uma versão nova e bem mais completa, com as datas e os contatos certos. Enquanto isso, me chama no e-mail ou no LinkedIn.", "My résumé is under maintenance: I'm building a new, much more complete version with the right dates and contacts. In the meantime, reach me by email or on LinkedIn.");
 const paginaLab = t("laboratorio.html", "lab.html");
 const outroIdioma = t("../en/index.html", "../pt-BR/index.html");
 const github = "https://github.com/gabrielvictoraraujodacruz-create";
@@ -185,7 +185,7 @@ const proximoAviso = () => {
   setTimeout(() => {
     aviso.classList.remove("show");
     setTimeout(proximoAviso, 300);
-  }, 2800);
+  }, Math.max(2800, texto.length * 45));
 };
 const avisa = (texto) => {
   filaAvisos.push(texto);
@@ -347,7 +347,7 @@ if (terminal) {
     whoami: () => "Gabriel Victor · Software Engineering student at UDF · Brasília, Brazil",
     about: vai("sobre"), projects: vai("projetos"), skills: vai("tecnologias"), education: vai("formacao"),
     experience: vai("experiencia"), contact: vai("contato"),
-    resume: () => { open(cv); return "Opening résumé (PDF)..."; },
+    resume: () => avisoCv,
     github: () => { open(github); return "Opening GitHub..."; },
     lab: () => { location.href = paginaLab; return "Opening the lab..."; },
     theme: () => { tema?.click(); return "Theme switched."; },
@@ -368,7 +368,7 @@ if (terminal) {
     whoami: () => "Gabriel Victor · Engenharia de Software na UDF · Brasília, DF",
     sobre: vai("sobre"), projetos: vai("projetos"), materias: vai("tecnologias"), formacao: vai("formacao"),
     experiencia: vai("experiencia"), contato: vai("contato"),
-    curriculo: () => { open(cv); return "Abrindo o currículo (PDF)..."; },
+    curriculo: () => avisoCv,
     github: () => { open(github); return "Abrindo o GitHub..."; },
     lab: () => { location.href = paginaLab; return "Abrindo o laboratório..."; },
     tema: () => { tema?.click(); return "Tema trocado."; },
@@ -621,7 +621,7 @@ if (header) {
     ...navLinks.map((a) => ({ nome: a.textContent, dica: `#${a.hash.slice(1)}`, faz: () => vaiPara(a.hash.slice(1)) })),
     { nome: t("Depoimentos", "Testimonials"), dica: "#depoimentos", faz: () => vaiPara("depoimentos") },
     { nome: t("Laboratório da matéria", "Course lab"), dica: paginaLab, faz: () => { location.href = paginaLab; } },
-    { nome: t("Baixar currículo", "Download résumé"), dica: "PDF", faz: () => open(cv) },
+    { nome: t("Currículo (em manutenção)", "Résumé (under maintenance)"), dica: t("em breve", "soon"), faz: () => avisa(avisoCv) },
     { nome: "GitHub", dica: "github.com", faz: () => open(github) },
     { nome: t("Trocar tema claro/escuro", "Toggle light/dark theme"), dica: t("tema", "theme"), faz: () => tema?.click() },
     { nome: t("Read in English", "Ler em português"), dica: t("idioma", "language"), faz: () => { location.href = outroIdioma; } },
@@ -1017,3 +1017,5 @@ if (calendario) {
 }
 
 document.querySelector("[data-cartao]")?.addEventListener("click", () => document.getElementById("cartao").showModal());
+
+document.querySelectorAll("[data-cv-aviso]").forEach((botao) => botao.addEventListener("click", () => avisa(avisoCv)));

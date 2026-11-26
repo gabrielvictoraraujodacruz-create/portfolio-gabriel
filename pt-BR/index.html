@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700&display=swap">
   <link rel="stylesheet" href="../assets/css/style.css?v=22">
-  <script src="../assets/js/main.js?v=17" defer></script>
+  <script src="../assets/js/main.js?v=18" defer></script>
 </head>
 <body>
   <svg class="icons" aria-hidden="true">
@@ -78,7 +78,7 @@
         </ul>
         <div class="actions">
           <a class="button primary" href="#projetos">Ver meus projetos</a>
-          <a class="button" href="../assets/cv/curriculo-gabriel-victor.pdf" download>Baixar currículo</a>
+          <button class="button" type="button" data-cv-aviso>Currículo em breve</button>
           <a class="button" href="#contato">Entrar em contato</a>
         </div>
       </div>
@@ -235,7 +235,7 @@
         </article>
         <article class="card">
           <h3>Artigos no dev.to</h3>
-          <p>Publiquei o primeiro artigo, sobre a automação do escritório. As anotações do dia a dia ficam no GitHub, que uso como caderno nas aulas.</p>
+          <p>Escrevo sobre a automação do escritório, como o motor que levou cada contrato de 15 minutos para 1. As anotações do dia a dia ficam no GitHub, que uso como caderno nas aulas.</p>
           <ul class="link-list" data-devto data-lang="pt">
             <li><a href="https://dev.to/gabrielvictorcruz" target="_blank" rel="noopener">Ver meu perfil no dev.to</a><span>Artigos carregados direto do dev.to</span></li>
           </ul>
@@ -781,8 +781,8 @@
         </div>
         <div class="card contact">
           <svg class="icon" aria-hidden="true"><use href="#i-text"/></svg>
-          <div><strong>Currículo</strong><span>PDF de 1 página</span></div>
-          <a class="button" href="../assets/cv/curriculo-gabriel-victor.pdf" download>Baixar</a>
+          <div><strong>Currículo <span class="chip quiet">Em manutenção</span></strong><span>Desenvolvendo uma versão nova e mais completa</span></div>
+          <button class="button" type="button" data-cv-aviso>Em breve</button>
         </div>
         <div class="card contact">
           <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
