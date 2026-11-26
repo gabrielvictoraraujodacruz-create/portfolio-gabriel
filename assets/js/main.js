@@ -330,12 +330,12 @@ if (terminal) {
   };
   const arquivos = ingles ? {
     "about.txt": "Software Engineering student at UDF (Brasília). I started working at 15 selling açaí on the street, and today I work with technology and operations at a law office.",
-    "experience.txt": "Law office (current) · Casa Baco restaurant, cashier to assistant manager · Brasília Consig · street sales since age 15",
+    "experience.txt": "Law office (since Jan 2026) · Casa Baco restaurant, cashier to assistant manager (age 24–27) · Açaí Artesanal (18–23) · Brasília Consig (16–18) · street açaí stand (15–16)",
     "contact.txt": "gabrielvictoraraujodacruz@gmail.com · WhatsApp +55 61 99371-6090",
     "secret.txt": "There is a code hidden in this site. Hint: ↑ ↑ ↓ ↓ ← → ← → B A (outside the terminal).",
   } : {
     "sobre.txt": "Estudante de Engenharia de Software na UDF (Brasília). Comecei a trabalhar aos 15 anos vendendo açaí na rua e hoje trabalho com tecnologia e operações num escritório de advocacia.",
-    "experiencia.txt": "Escritório de advocacia (atual) · Casa Baco, de caixa a subgerente · Brasília Consig · vendas na rua desde os 15",
+    "experiencia.txt": "Escritório de advocacia (desde jan/2026) · Casa Baco, de caixa a subgerente (24 aos 27) · Açaí Artesanal (18 aos 23) · Brasília Consig (16 aos 18) · barraca de açaí na rua (15 aos 16)",
     "contato.txt": "gabrielvictoraraujodacruz@gmail.com · WhatsApp (61) 99371-6090",
     "segredo.txt": "Tem um código escondido neste site. Dica: ↑ ↑ ↓ ↓ ← → ← → B A (fora do terminal).",
   };

@@ -2300,3 +2300,10 @@ kbd {
   font-size: 0.875rem;
   font-weight: 600;
 }
+
+.job .periodo {
+  margin-top: 2px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
