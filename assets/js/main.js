@@ -622,6 +622,7 @@ const header = document.querySelector(".header-inner");
 if (header) {
   const atalhos = [
     ...navLinks.map((a) => ({ nome: a.textContent, dica: `#${a.hash.slice(1)}`, faz: () => vaiPara(a.hash.slice(1)) })),
+    { nome: t("Depoimentos", "Testimonials"), dica: "#depoimentos", faz: () => vaiPara("depoimentos") },
     { nome: t("Laboratório da matéria", "Course lab"), dica: paginaLab, faz: () => { location.href = paginaLab; } },
     { nome: t("Baixar currículo", "Download résumé"), dica: "PDF", faz: () => open(cv) },
     { nome: "GitHub", dica: "github.com", faz: () => open(github) },

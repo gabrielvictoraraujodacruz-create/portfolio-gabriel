@@ -2233,3 +2233,70 @@ kbd {
     display: none;
   }
 }
+
+.depoimento {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0;
+  padding: 32px 28px 24px;
+}
+
+.depoimento::before {
+  content: "“";
+  position: absolute;
+  top: 4px;
+  right: 20px;
+  color: rgba(var(--glow), 0.22);
+  font-family: var(--title);
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.depoimento blockquote {
+  margin: 0;
+}
+
+.depoimento blockquote p {
+  position: relative;
+  padding-right: 44px;
+  color: var(--text);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.depoimento figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--surface-3);
+}
+
+.depoimento figcaption strong {
+  display: block;
+  font-family: var(--title);
+}
+
+.depoimento figcaption small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  background: rgba(var(--glow), 0.12);
+  color: var(--primary);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
