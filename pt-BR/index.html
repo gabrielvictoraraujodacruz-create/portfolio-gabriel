@@ -21,8 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/style.css?v=10">
-  <script src="../assets/js/main.js?v=9" defer></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=11">
+  <script src="../assets/js/main.js?v=10" defer></script>
 </head>
 <body>
   <svg class="icons" aria-hidden="true">
@@ -95,6 +95,14 @@
         <li class="card stat"><strong data-stat="materias">9</strong><span>matérias cursadas na UDF</span></li>
         <li class="card stat"><strong data-stat="java">3</strong><span>dias do desafio de Java</span></li>
       </ul>
+      <div class="card agora">
+        <span class="agora-ponto" aria-hidden="true"></span>
+        <div>
+          <strong>Agora</strong>
+          <p>Estudando Front-End, Algoritmos em C e Banco de Dados no 2º semestre, e automatizando tarefas no escritório.</p>
+          <p class="agora-commit" data-commit hidden></p>
+        </div>
+      </div>
       <p class="stats-note">números atualizados ao vivo pelo GitHub</p>
     </section>
 
@@ -136,7 +144,7 @@
             <h3>Este portfólio</h3>
             <p>HTML, CSS e JavaScript puro, sem framework. Tem português e inglês, tema claro e escuro, terminal interativo e dados ao vivo das APIs do GitHub e do dev.to. Publicado no GitHub Pages.</p>
             <div class="subject-list"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">API REST</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/portfolio-gabriel" target="_blank" rel="noopener">GitHub</a></div>
+            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/portfolio-gabriel" target="_blank" rel="noopener">GitHub</a><button class="link-btn" type="button" data-caso="caso-portfolio">Como fiz</button></div>
           </div>
         </article>
         <article class="card project" data-category="web">
@@ -280,6 +288,7 @@
             <li><b>04</b>Conferência humana</li>
             <li><b>05</b>Documento pronto</li>
           </ol>
+          <button class="button caso-btn" type="button" data-caso="caso-documentos">Como fiz →</button>
         </article>
         <article class="card">
           <h3>Acompanhamento de publicações</h3>
@@ -290,6 +299,7 @@
             <li><b>03</b>Lista do que mudou</li>
             <li><b>04</b>Conferência humana</li>
           </ol>
+          <button class="button caso-btn" type="button" data-caso="caso-publicacoes">Como fiz →</button>
         </article>
       </div>
     </section>
@@ -358,6 +368,15 @@
             <li>UX e jornada do usuário <span class="level academic">Acadêmico</span></li>
           </ul>
         </article>
+      </div>
+
+      <div class="card langs" data-langs>
+        <canvas width="200" height="200" aria-hidden="true"></canvas>
+        <div>
+          <h3>Linguagem principal dos meus repositórios</h3>
+          <p>Contagem ao vivo pelo GitHub. “Só texto” são repositórios de anotações e guias em Markdown.</p>
+          <ul class="langs-legenda"></ul>
+        </div>
       </div>
 
       <h3 class="sub-title">O que aprendi em cada matéria</h3>
@@ -709,10 +728,57 @@
     </section>
   </main>
 
+  <dialog class="caso" id="caso-portfolio" aria-labelledby="caso-portfolio-t">
+    <form method="dialog"><button class="caso-fechar" aria-label="Fechar">×</button></form>
+    <span class="label">Estudo de caso</span>
+    <h2 id="caso-portfolio-t">Este portfólio</h2>
+    <dl class="caso-etapas">
+      <dt>O problema</dt>
+      <dd>O projeto final da matéria de Front-End pedia um portfólio. Eu queria um site que mostrasse quem eu sou além das notas: a trajetória desde os 15 anos, o trabalho no escritório e o que eu estudo.</dd>
+      <dt>As decisões</dt>
+      <dd>Usei o Stitch, uma IA de design, só para testar layouts. O código final é HTML, CSS e JavaScript puro, sem framework, para eu entender cada linha. Fiz em português e inglês, troquei as barras de porcentagem por “uso prático, acadêmico ou em estudo” e puxo dados ao vivo do GitHub e do dev.to.</dd>
+      <dt>O que deu errado</dt>
+      <dd>O Stitch colocou números inventados nas telas, como requisições por segundo e porcentagens, e eu tive que tirar todos. Uma foto mostrava informações do escritório ao fundo e saiu do site. Na primeira publicação, o GitHub Pages ficou 14 minutos parado na fila.</dd>
+      <dt>O que eu faria diferente</dt>
+      <dd>Guardaria os textos num arquivo de dados único. Hoje cada mudança precisa ser feita duas vezes, uma em cada idioma.</dd>
+    </dl>
+  </dialog>
+  <dialog class="caso" id="caso-documentos" aria-labelledby="caso-documentos-t">
+    <form method="dialog"><button class="caso-fechar" aria-label="Fechar">×</button></form>
+    <span class="label">Estudo de caso</span>
+    <h2 id="caso-documentos-t">Geração de documentos</h2>
+    <dl class="caso-etapas">
+      <dt>O problema</dt>
+      <dd>Todo cliente novo precisa de um kit de documentos: contrato, procuração e declarações. Montar à mão tomava tempo e abria espaço para erro de digitação.</dd>
+      <dt>As decisões</dt>
+      <dd>Separei os papéis. A IA só conversa e reúne os dados do cliente. Um script em Python preenche o modelo fixo do escritório, cria a pasta e manda imprimir. O resultado é o mesmo toda vez e sai em segundos.</dd>
+      <dt>O que deu errado</dt>
+      <dd>A primeira tentativa foi deixar a IA editar os documentos na hora. Ficou lento, chegou a 20 minutos para 3 documentos, e errou: mandou para a impressora errada e gerou um contrato com dado faltando. Depois, levei o sistema para outro computador sem padronizar antes, e lá o resultado saiu diferente.</dd>
+      <dt>O que eu faria diferente</dt>
+      <dd>Padronizaria tudo antes de levar para outras máquinas e testaria com um caso real antes de confiar. Aprendi que, para tarefa repetitiva, script é melhor do que IA.</dd>
+    </dl>
+  </dialog>
+  <dialog class="caso" id="caso-publicacoes" aria-labelledby="caso-publicacoes-t">
+    <form method="dialog"><button class="caso-fechar" aria-label="Fechar">×</button></form>
+    <span class="label">Estudo de caso</span>
+    <h2 id="caso-publicacoes-t">Acompanhamento de publicações</h2>
+    <dl class="caso-etapas">
+      <dt>O problema</dt>
+      <dd>Acompanhar as intimações em vários tribunais exigia abrir site por site, todos os dias.</dd>
+      <dt>As decisões</dt>
+      <dd>Descobri que o CNJ tem APIs públicas: uma consulta cobre vários tribunais, sem senha e sem precisar copiar dados de página. Montei em três etapas: um script coleta, um filtro com regras escritas separa o que importa, e a IA entra só no resumo final.</dd>
+      <dt>O que deu errado</dt>
+      <dd>As intimações têm um rodapé padrão que repete prazos genéricos, e o filtro passou a achar prazos que não eram do processo: 19 de 55 intimações tinham mais de um prazo no texto. Também descobri que uma das APIs atualiza com cerca de 22 dias de atraso, então não serve para saber o que andou ontem. E a mesma intimação aparecia duas vezes.</dd>
+      <dt>O que eu faria diferente</dt>
+      <dd>Mediria os limites de cada fonte de dados antes de desenhar o sistema, e não depois.</dd>
+    </dl>
+  </dialog>
+
   <footer class="footer">
     <div class="container footer-inner">
       <span>Gabriel Victor Araujo da Cruz</span>
-      <span class="footer-hint">Aperte <kbd>Ctrl</kbd> <kbd>K</kbd> para navegar · tem um segredo escondido</span>
+      <span class="footer-hint">Aperte <kbd>Ctrl</kbd> <kbd>K</kbd> para navegar</span>
+      <button class="link-btn" type="button" data-abre-segredos>Segredos achados: <span data-segredos>0/8</span></button>
       <a href="#inicio">Voltar ao topo</a>
     </div>
   </footer>

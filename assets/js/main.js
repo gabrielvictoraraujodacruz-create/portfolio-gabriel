@@ -152,6 +152,7 @@ if (ladoALado) {
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", claro ? "#f6f8f9" : "#101419");
   };
   tema.addEventListener("click", () => {
+    conquista("tema");
     const claro = raiz.dataset.theme !== "light";
     const troca = () => {
       if (claro) raiz.dataset.theme = "light";
@@ -170,18 +171,99 @@ const aviso = document.createElement("p");
 aviso.className = "toast";
 aviso.setAttribute("role", "status");
 document.body.append(aviso);
-let avisoTimer;
-const avisa = (texto) => {
+const filaAvisos = [];
+let mostrandoAviso = false;
+const proximoAviso = () => {
+  const texto = filaAvisos.shift();
+  if (texto === undefined) {
+    mostrandoAviso = false;
+    return;
+  }
+  mostrandoAviso = true;
   aviso.textContent = texto;
   aviso.classList.add("show");
-  clearTimeout(avisoTimer);
-  avisoTimer = setTimeout(() => aviso.classList.remove("show"), 3200);
+  setTimeout(() => {
+    aviso.classList.remove("show");
+    setTimeout(proximoAviso, 300);
+  }, 2800);
 };
+const avisa = (texto) => {
+  filaAvisos.push(texto);
+  if (!mostrandoAviso) proximoAviso();
+};
+
+const segredos = [
+  ["terminal", t("Usou o terminal", "Used the terminal"), t("digite help no terminal do Sobre", "type help in the About terminal")],
+  ["paleta", t("Abriu a navegação rápida", "Opened quick navigation"), t("um atalho de teclado com a letra K", "a keyboard shortcut with the letter K")],
+  ["tema", t("Trocou o tema", "Switched the theme"), t("o botão do sol ou da lua", "the sun or moon button")],
+  ["video", t("Viu um projeto em vídeo", "Watched a project video"), t("passe o mouse sobre um projeto", "hover over a project")],
+  ["caso", t("Leu um estudo de caso", "Read a case study"), t("o botão Como fiz", "the How I built it button")],
+  ["lab", t("Visitou o laboratório", "Visited the lab"), t("tem uma página extra na seção Projetos", "there is an extra page in Projects")],
+  ["matrix", t("Entrou na Matrix", "Entered the Matrix"), t("um comando do terminal com nome de filme", "a terminal command named after a movie")],
+  ["retro", t("Ligou o modo retrô", "Turned on retro mode"), "↑ ↑ ↓ ↓ ← → ← → B A"],
+];
+const achados = (() => {
+  try {
+    return new Set(JSON.parse(localStorage.getItem("segredos") || "[]"));
+  } catch (e) {
+    return new Set();
+  }
+})();
+const placar = () => {
+  document.querySelectorAll("[data-segredos]").forEach((el) => {
+    el.textContent = `${achados.size}/${segredos.length}`;
+  });
+};
+const conquista = (id) => {
+  if (achados.has(id)) return;
+  achados.add(id);
+  try { localStorage.setItem("segredos", JSON.stringify([...achados])); } catch (e) {}
+  placar();
+  const nome = segredos.find(([chave]) => chave === id)[1];
+  const conta = `${achados.size}/${segredos.length}`;
+  avisa(achados.size === segredos.length
+    ? t("Você achou todos os segredos do site!", "You found every secret on this site!")
+    : t(`Segredo achado: ${nome} (${conta})`, `Secret found: ${nome} (${conta})`));
+};
+
+const painel = document.createElement("dialog");
+painel.className = "caso";
+painel.setAttribute("aria-labelledby", "segredos-t");
+document.body.append(painel);
+const abrePainel = () => {
+  painel.innerHTML = `<form method="dialog"><button class="caso-fechar" aria-label="${t("Fechar", "Close")}">×</button></form><span class="label">${t("Segredos", "Secrets")}</span><h2 id="segredos-t">${t("Segredos achados", "Secrets found")}: ${achados.size}/${segredos.length}</h2><ul class="segredos"></ul>`;
+  painel.querySelector("ul").append(...segredos.map(([id, nome, dica]) => {
+    const li = document.createElement("li");
+    const ok = achados.has(id);
+    li.className = ok ? "ok" : "";
+    li.innerHTML = "<b></b><span></span>";
+    li.firstChild.textContent = ok ? nome : "???";
+    li.lastChild.textContent = ok ? t("achado", "found") : t(`Dica: ${dica}`, `Hint: ${dica}`);
+    return li;
+  }));
+  painel.showModal();
+};
+document.querySelectorAll("[data-abre-segredos]").forEach((botao) => botao.addEventListener("click", abrePainel));
+
+document.querySelectorAll("[data-caso]").forEach((botao) => {
+  const caixa = document.getElementById(botao.dataset.caso);
+  botao.addEventListener("click", () => {
+    caixa.showModal();
+    conquista("caso");
+  });
+});
+document.querySelectorAll("dialog.caso").forEach((caixa) => {
+  caixa.addEventListener("click", (e) => {
+    if (e.target === caixa) caixa.close();
+  });
+});
+placar();
 
 const alternaRetro = () => {
   const liga = !raiz.hasAttribute("data-retro");
   raiz.toggleAttribute("data-retro", liga);
   avisa(liga ? t("Modo retrô ligado. Repita o código para sair.", "Retro mode on. Enter the code again to leave.") : t("Modo retrô desligado.", "Retro mode off."));
+  if (liga) conquista("retro");
   return liga;
 };
 
@@ -202,6 +284,7 @@ const vaiPara = (id) => {
 };
 
 const chuvaMatrix = () => {
+  conquista("matrix");
   const tela = document.createElement("canvas");
   tela.className = "matrix";
   tela.setAttribute("aria-hidden", "true");
@@ -258,7 +341,8 @@ if (terminal) {
   };
   const cafe = "   ( (\n    ) )\n  ........\n  |      |]\n  \\      /\n   `----'";
   const comandos = ingles ? {
-    help: () => "about · projects · skills · education · experience · contact · resume · github · lab · theme · lang · ls · cat · whoami · date · echo · coffee · matrix · retro · sudo · clear",
+    help: () => "about · projects · skills · education · experience · contact · resume · github · lab · theme · lang · ls · cat · whoami · date · echo · coffee · matrix · retro · secrets · sudo · clear",
+    secrets: () => { abrePainel(); return `Secrets found: ${achados.size}/${segredos.length}`; },
     whoami: () => "Gabriel Victor · Software Engineering student at UDF · Brasília, Brazil",
     about: vai("sobre"), projects: vai("projetos"), skills: vai("tecnologias"), education: vai("formacao"),
     experience: vai("experiencia"), contact: vai("contato"),
@@ -276,7 +360,8 @@ if (terminal) {
     retro: () => (alternaRetro() ? "Retro mode on." : "Retro mode off."),
     sudo: () => "gabriel is not in the sudoers file. This incident will be reported. (just kidding)",
   } : {
-    help: () => "sobre · projetos · materias · formacao · experiencia · contato · curriculo · github · lab · tema · idioma · ls · cat · whoami · data · echo · cafe · matrix · retro · sudo · limpar",
+    help: () => "sobre · projetos · materias · formacao · experiencia · contato · curriculo · github · lab · tema · idioma · ls · cat · whoami · data · echo · cafe · matrix · retro · segredos · sudo · limpar",
+    segredos: () => { abrePainel(); return `Segredos achados: ${achados.size}/${segredos.length}`; },
     whoami: () => "Gabriel Victor · Engenharia de Software na UDF · Brasília, DF",
     sobre: vai("sobre"), projetos: vai("projetos"), materias: vai("tecnologias"), formacao: vai("formacao"),
     experiencia: vai("experiencia"), contato: vai("contato"),
@@ -320,6 +405,7 @@ if (terminal) {
       escreve(t(`Comando não encontrado: ${cmd}. Digite help.`, `Command not found: ${cmd}. Type help.`));
       return;
     }
+    conquista("terminal");
     const resposta = acao(...args.map((a) => (cmd === "echo" ? a : limpa(a))));
     if (Array.isArray(resposta)) escreve(resposta[1], "terminal-pre");
     else escreve(resposta);
@@ -408,10 +494,16 @@ fetch(`https://api.github.com/users/gabrielvictoraraujodacruz-create/repos?sort=
     if (!repos.length) return;
     numero("repos", repos.length);
     numero("langs", new Set(repos.map((r) => r.language).filter(Boolean)).size);
-    preenche(document.querySelector("[data-github]"), repos
-      .filter((r) => r.name !== "gabrielvictoraraujodacruz-create" && !/parque/i.test(r.name))
+    graficoLangs(repos.reduce((soma, r) => {
+      const nome = r.language || "Markdown";
+      soma[nome] = (soma[nome] || 0) + 1;
+      return soma;
+    }, {}));
+    const publicos = repos.filter((r) => r.name !== "gabrielvictoraraujodacruz-create" && !/parque/i.test(r.name));
+    preenche(document.querySelector("[data-github]"), publicos
       .slice(0, 5)
       .map((r) => [r.html_url, r.name.replace(/[_-]+/g, " ").trim(), `${r.language || "Markdown"} · ${quando(r.pushed_at)}`]));
+    if (publicos[0]) ultimoCommit(publicos[0]);
   })
   .catch(() => {});
 
@@ -429,7 +521,7 @@ fetch("https://dev.to/api/articles?username=gabrielvictorcruz&per_page=5")
 document.querySelectorAll(".project video").forEach((video) => {
   if (reducedMotion) return;
   const card = video.closest(".project");
-  const toca = () => video.play().catch(() => {});
+  const toca = () => video.play().then(() => conquista("video")).catch(() => {});
   const para = () => {
     video.pause();
     video.currentTime = 0;
@@ -537,6 +629,8 @@ if (header) {
     { nome: t("Read in English", "Ler em português"), dica: t("idioma", "language"), faz: () => { location.href = outroIdioma; } },
     { nome: t("Abrir o terminal", "Open the terminal"), dica: "$ help", faz: () => { vaiPara("sobre"); setTimeout(() => terminal?.querySelector("input").focus({ preventScroll: true }), 500); } },
     { nome: t("Modo retrô", "Retro mode"), dica: "↑↑↓↓←→←→BA", faz: alternaRetro },
+    { nome: t("Segredos achados", "Secrets found"), dica: t("segredos", "secrets"), faz: abrePainel },
+    { nome: t("Estudo de caso: este portfólio", "Case study: this portfolio"), dica: t("como fiz", "how I built it"), faz: () => document.querySelector('[data-caso="caso-portfolio"]')?.click() },
   ];
   const caixa = document.createElement("dialog");
   caixa.className = "paleta";
@@ -586,6 +680,7 @@ if (header) {
     filtra();
     caixa.showModal();
     busca.focus();
+    conquista("paleta");
   };
   busca.addEventListener("input", filtra);
   busca.addEventListener("keydown", (e) => {
@@ -615,4 +710,108 @@ if (header) {
   botao.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><kbd>Ctrl K</kbd>';
   botao.addEventListener("click", abre);
   (tema || ladoALado).after(botao);
+}
+
+function ultimoCommit(repo) {
+  const alvo = document.querySelector("[data-commit]");
+  if (!alvo) return;
+  fetch(`https://api.github.com/repos/${repo.full_name}/commits?per_page=1`)
+    .then((r) => (r.ok ? r.json() : []))
+    .then(([commit]) => {
+      if (!commit) return;
+      const link = document.createElement("a");
+      link.href = commit.html_url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = `“${commit.commit.message.split("\n")[0]}”`;
+      const nome = repo.name.replace(/[_-]+/g, " ").trim();
+      alvo.replaceChildren(
+        t("Último commit: ", "Latest commit: "),
+        link,
+        t(` em ${nome}, ${quando(commit.commit.author.date)}.`, ` in ${nome}, ${quando(commit.commit.author.date)}.`)
+      );
+      alvo.hidden = false;
+    })
+    .catch(() => {});
+}
+
+let contagemLangs = { Markdown: 8, HTML: 4, Python: 2, C: 1, CSS: 1, JavaScript: 1, "Jupyter Notebook": 1 };
+let langsVisto = false;
+
+function graficoLangs(contagem, animar = true) {
+  const caixa = document.querySelector("[data-langs]");
+  if (!caixa) return;
+  contagemLangs = contagem;
+  const tela = caixa.querySelector("canvas");
+  const lista = caixa.querySelector("ul");
+  const itens = Object.entries(contagem).sort((a, b) => b[1] - a[1]);
+  const total = itens.reduce((soma, [, n]) => soma + n, 0);
+  const claro = raiz.dataset.theme === "light" && !raiz.hasAttribute("data-retro");
+  const cores = claro
+    ? ["#0b6b5c", "#1f4e9c", "#a86b00", "#c2410c", "#be185d", "#6d28d9", "#0369a1", "#0a7a4f"]
+    : ["#83f3de", "#adc6ff", "#ffe08a", "#ff9b73", "#f6a6c1", "#c9a3ff", "#8fd3ff", "#6bf8ba"];
+  const nomes = { Markdown: t("Só texto (Markdown)", "Text only (Markdown)") };
+  lista.replaceChildren(...itens.map(([nome, n], i) => {
+    const li = document.createElement("li");
+    li.innerHTML = '<i aria-hidden="true"></i><span></span><small></small>';
+    li.firstChild.style.background = cores[i % cores.length];
+    li.children[1].textContent = nomes[nome] || nome;
+    li.lastChild.textContent = `${n} · ${Math.round((n / total) * 100)}%`;
+    return li;
+  }));
+  const estilo = getComputedStyle(raiz);
+  const escala = devicePixelRatio || 1;
+  const tam = 200;
+  tela.width = tam * escala;
+  tela.height = tam * escala;
+  const ctx = tela.getContext("2d");
+  ctx.setTransform(escala, 0, 0, escala, 0, 0);
+  const desenha = (p) => {
+    ctx.clearRect(0, 0, tam, tam);
+    ctx.lineWidth = 24;
+    ctx.strokeStyle = estilo.getPropertyValue("--surface-3");
+    ctx.beginPath();
+    ctx.arc(tam / 2, tam / 2, 76, 0, Math.PI * 2);
+    ctx.stroke();
+    let inicio = -Math.PI / 2;
+    itens.forEach(([, n], i) => {
+      const angulo = (n / total) * Math.PI * 2 * p;
+      ctx.strokeStyle = cores[i % cores.length];
+      ctx.beginPath();
+      ctx.arc(tam / 2, tam / 2, 76, inicio, inicio + Math.max(0, angulo - 0.03));
+      ctx.stroke();
+      inicio += angulo;
+    });
+    ctx.fillStyle = estilo.getPropertyValue("--text");
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = `700 40px ${estilo.getPropertyValue("--title")}`;
+    ctx.fillText(String(total), tam / 2, tam / 2 - 8);
+    ctx.fillStyle = estilo.getPropertyValue("--muted");
+    ctx.font = `12px ${estilo.getPropertyValue("--mono")}`;
+    ctx.fillText(t("repositórios", "repositories"), tam / 2, tam / 2 + 22);
+  };
+  if (!animar || reducedMotion || !langsVisto) {
+    desenha(langsVisto || reducedMotion || !animar ? 1 : 0);
+    return;
+  }
+  const comeco = performance.now();
+  const passo = (agora) => {
+    const p = Math.min(1, (agora - comeco) / 1100);
+    desenha(1 - (1 - p) ** 3);
+    if (p < 1) requestAnimationFrame(passo);
+  };
+  requestAnimationFrame(passo);
+}
+
+const caixaLangs = document.querySelector("[data-langs]");
+if (caixaLangs) {
+  graficoLangs(contagemLangs);
+  new IntersectionObserver(([entry], obs) => {
+    if (!entry.isIntersecting) return;
+    langsVisto = true;
+    graficoLangs(contagemLangs);
+    obs.disconnect();
+  }, { threshold: 0.4 }).observe(caixaLangs);
+  new MutationObserver(() => graficoLangs(contagemLangs, false)).observe(raiz, { attributes: true, attributeFilter: ["data-theme", "data-retro"] });
 }

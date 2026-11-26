@@ -1965,3 +1965,271 @@ kbd {
 :root[data-retro] video {
   filter: grayscale(1) sepia(1) hue-rotate(70deg) saturate(3) brightness(0.85);
 }
+
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--primary);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: var(--green);
+}
+
+.caso-btn {
+  margin-top: 20px;
+}
+
+.caso {
+  width: min(680px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  margin: auto;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
+.caso::backdrop {
+  background: rgba(5, 8, 12, 0.65);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.caso h2 {
+  font-size: 1.75rem;
+}
+
+.caso-fechar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.caso-fechar:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.caso-etapas {
+  margin: 24px 0 0;
+}
+
+.caso-etapas dt {
+  position: relative;
+  padding-left: 20px;
+  color: var(--primary);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.caso-etapas dt::before {
+  content: "";
+  position: absolute;
+  top: 0.45em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.caso-etapas dd {
+  margin: 6px 0 20px 20px;
+  padding-left: 16px;
+  border-left: 1px solid var(--surface-3);
+  color: var(--muted);
+}
+
+.caso-etapas dd:last-child {
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .caso[open] {
+    animation: hero-in 0.25s ease-out;
+  }
+}
+
+.segredos {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.segredos li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 10px 14px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.segredos li b {
+  font-family: var(--mono);
+}
+
+.segredos li span {
+  font-size: 0.8125rem;
+}
+
+.segredos li.ok {
+  border-style: solid;
+  border-color: var(--primary);
+  background: rgba(var(--glow), 0.08);
+  color: var(--text);
+}
+
+.segredos li.ok span {
+  color: var(--primary);
+}
+
+.agora {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding: 18px 20px;
+}
+
+.agora strong {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.agora p {
+  color: var(--muted);
+}
+
+.agora-commit {
+  margin-top: 4px;
+  font-size: 0.875rem;
+}
+
+.agora-commit a {
+  font-family: var(--mono);
+}
+
+.agora-ponto {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(var(--glow), 0.18);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .agora-ponto {
+    animation: ao-vivo 2s ease-in-out infinite;
+  }
+}
+
+@keyframes ao-vivo {
+  50% {
+    box-shadow: 0 0 0 8px rgba(var(--glow), 0);
+  }
+}
+
+.langs {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.langs canvas {
+  width: 200px;
+  height: 200px;
+}
+
+.langs-legenda {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
+  margin-top: 16px;
+}
+
+.langs-legenda li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+}
+
+.langs-legenda i {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.langs-legenda small {
+  margin-left: auto;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 820px) {
+  .langs {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .langs > div {
+    width: 100%;
+  }
+
+  .caso {
+    padding: 24px 20px;
+  }
+
+  .caso h2 {
+    padding-right: 44px;
+    font-size: 1.375rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .langs-legenda {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media print {
+  .caso-btn,
+  .link-btn,
+  .agora-commit {
+    display: none;
+  }
+}

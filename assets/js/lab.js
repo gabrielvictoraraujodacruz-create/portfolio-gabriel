@@ -67,3 +67,9 @@ document.querySelectorAll("[data-passo]").forEach((botao) => {
 document.getElementById("dispara-toast").addEventListener("click", () => {
   if (window.bootstrap) bootstrap.Toast.getOrCreateInstance(document.getElementById("aviso")).show();
 });
+
+try {
+  const achados = new Set(JSON.parse(localStorage.getItem("segredos") || "[]"));
+  achados.add("lab");
+  localStorage.setItem("segredos", JSON.stringify([...achados]));
+} catch (e) {}
