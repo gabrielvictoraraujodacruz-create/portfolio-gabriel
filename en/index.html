@@ -21,8 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/style.css?v=14">
-  <script src="../assets/js/main.js?v=13" defer></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=15">
+  <script src="../assets/js/main.js?v=14" defer></script>
 </head>
 <body>
   <svg class="icons" aria-hidden="true">
@@ -102,6 +102,11 @@
           <p>Studying Front-End, Algorithms in C and Databases in my 2nd semester, and automating tasks at the office.</p>
           <p class="agora-commit" data-commit hidden></p>
         </div>
+      </div>
+      <div class="card commits" data-commits hidden>
+        <p class="commits-topo"><strong>Commits on GitHub</strong><span><b data-commits-total>0</b> contributions in the last year</span></p>
+        <div class="commits-grade" role="img" aria-label="GitHub contribution calendar for the last year"></div>
+        <p class="commits-legenda" aria-hidden="true">less <i data-n="0"></i><i data-n="1"></i><i data-n="2"></i><i data-n="3"></i><i data-n="4"></i> more</p>
       </div>
       <p class="stats-note">numbers updated live from GitHub</p>
     </section>
@@ -633,6 +638,13 @@
         <h2>Professional journey</h2>
         <p>From the most recent experience to the first.</p>
       </div>
+      <ol class="trilha" aria-label="Timeline by age">
+        <li style="--p: 0"><b>15</b><span>Açaí street stand</span></li>
+        <li style="--p: 8"><b>16</b><span>Brasília Consig</span></li>
+        <li style="--p: 23"><b>18</b><span>Açaí Artesanal</span></li>
+        <li style="--p: 69"><b>24</b><span>Casa Baco</span></li>
+        <li style="--p: 100"><b>28</b><span>Law office and Software Engineering</span></li>
+      </ol>
       <ol class="timeline">
         <li>
           <article class="card job">
@@ -765,6 +777,11 @@
           <div><strong>Résumé</strong><span>One-page PDF</span></div>
           <a class="button" href="../assets/cv/resume-gabriel-victor.pdf" download>Download</a>
         </div>
+        <div class="card contact">
+          <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
+          <div><strong>Business card</strong><span>QR code and contact for your phone</span></div>
+          <button class="button" type="button" data-cartao>Show</button>
+        </div>
       </div>
       <p class="copy-status" role="status"></p>
     </section>
@@ -814,6 +831,16 @@
       <dt>What I would do differently</dt>
       <dd>I would measure the limits of each data source before designing the system, not after.</dd>
     </dl>
+  </dialog>
+
+  <dialog class="caso cartao" id="cartao" aria-labelledby="cartao-t">
+    <form method="dialog"><button class="caso-fechar" aria-label="Close">×</button></form>
+    <span class="label">Business card</span>
+    <h2 id="cartao-t">Gabriel Victor</h2>
+    <p>Software Engineering · UDF · Brasília, Brazil</p>
+    <img src="../assets/img/qr-en.svg" width="232" height="232" alt="QR code that opens this portfolio">
+    <p class="cartao-dica">Point your phone camera at it to open the portfolio.</p>
+    <a class="button primary" href="../assets/gabriel-victor.vcf" download>Save contact (.vcf)</a>
   </dialog>
 
   <footer class="footer">

@@ -18,10 +18,12 @@ Depois abra http://localhost:8000.
 - `en/index.html`: site em inglês
 - `pt-BR/laboratorio.html` e `en/lab.html`: laboratório da matéria de Front-End, feito com Bootstrap 5
 - `assets/css/style.css`: estilos e cores
-- `assets/js/main.js`: menu, terminal interativo, fundo animado em canvas, Ctrl+K, números e dados ao vivo do GitHub e do dev.to, vídeos dos projetos, cópia do e-mail, modo retrô e animações
+- `assets/js/main.js`: menu, terminal interativo, fundo animado em canvas, Ctrl+K, números e dados ao vivo do GitHub e do dev.to, vídeos dos projetos, cópia do e-mail, modo retrô, jogo da cobrinha, linha do tempo, calendário de commits, cartão de visita e animações
 - `assets/css/lab.css` e `assets/js/lab.js`: ajustes e interações do laboratório
 - `assets/video/`: prévias em vídeo dos projetos
-- `assets/img/`: foto e imagens dos projetos
+- `assets/img/`: foto e imagens dos projetos e QR codes do cartão de visita
+- `assets/data/commits.json`: calendário de commits, atualizado todo dia por `.github/workflows/commits.yml`
+- `assets/gabriel-victor.vcf`: contato para salvar no celular
 - `assets/cv/`: currículo em PDF (português e inglês)
 - `404.html`, `sitemap.xml`, `robots.txt`: página de erro e arquivos para buscadores
 

@@ -2306,3 +2306,361 @@ kbd {
   font-family: var(--mono);
   font-size: 0.8125rem;
 }
+
+.trilha {
+  position: relative;
+  height: 150px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.trilha::before,
+.trilha::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 13%;
+  right: 7%;
+  height: 2px;
+  background: var(--border);
+}
+
+.trilha::after {
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.6s ease-out;
+}
+
+.trilha.visivel::after {
+  transform: scaleX(1);
+}
+
+.trilha li {
+  position: absolute;
+  top: 50%;
+  left: calc(13% + var(--p) * 0.8%);
+  width: 0;
+}
+
+.trilha li::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  transition-delay: calc(var(--p) * 16ms);
+}
+
+.trilha.visivel li::before {
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 0 0 5px rgba(var(--glow), 0.2);
+}
+
+.trilha b,
+.trilha span {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  max-width: 170px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.trilha b {
+  bottom: 14px;
+  color: var(--primary);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
+.trilha b::after {
+  content: " anos";
+}
+
+:root[lang="en"] .trilha b::after {
+  content: "";
+}
+
+.trilha span {
+  top: 16px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.trilha li:nth-child(even) b {
+  bottom: auto;
+  top: 16px;
+}
+
+.trilha li:nth-child(even) span {
+  top: auto;
+  bottom: 14px;
+}
+
+.trilha li:is(:first-child, :last-child) :is(b, span) {
+  transform: translateX(calc(-100% + 8px));
+  text-align: right;
+}
+
+.trilha li:nth-child(2) :is(b, span) {
+  transform: translateX(-8px);
+  text-align: left;
+}
+
+.trilha li:last-child span {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.commits {
+  margin-top: 16px;
+  padding: 18px 20px;
+}
+
+.commits-topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-bottom: 12px;
+}
+
+.commits-topo strong {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.commits-topo span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.commits-topo b {
+  color: var(--text);
+}
+
+.commits-grade {
+  display: grid;
+  grid-template-rows: repeat(7, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(11px, 1fr);
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.commits-grade i {
+  aspect-ratio: 1;
+}
+
+.commits-legenda i {
+  width: 11px;
+  height: 11px;
+}
+
+.commits-grade i,
+.commits-legenda i {
+  display: block;
+  border-radius: 2px;
+  background: rgba(var(--glow), 0.08);
+}
+
+.commits-grade i[data-n] {
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.4s, transform 0.4s;
+  transition-delay: calc(var(--c) * 14ms);
+}
+
+.commits.visivel .commits-grade i[data-n] {
+  opacity: 1;
+  transform: none;
+}
+
+.commits [data-n="1"] { background: rgba(var(--glow), 0.3); }
+.commits [data-n="2"] { background: rgba(var(--glow), 0.5); }
+.commits [data-n="3"] { background: rgba(var(--glow), 0.75); }
+.commits [data-n="4"] { background: rgb(var(--glow)); }
+
+.commits-grade i:not([data-n]) {
+  background: transparent;
+}
+
+.commits-legenda {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.commits-legenda i {
+  display: inline-block;
+}
+
+.cartao {
+  text-align: center;
+}
+
+.cartao img {
+  margin: 18px auto 10px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.cartao p {
+  color: var(--muted);
+}
+
+.cartao .button {
+  margin-top: 14px;
+}
+
+.jogo {
+  width: min(400px, calc(100vw - 32px));
+  text-align: center;
+}
+
+.jogo canvas {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 8px auto 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  touch-action: none;
+}
+
+.jogo-placar {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.jogo-placar b {
+  color: var(--primary);
+}
+
+.jogo-msg {
+  min-height: 1.6em;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.jogo-setas {
+  display: none;
+  grid-template-columns: repeat(3, 52px);
+  justify-content: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.jogo-setas button {
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.jogo-setas button:first-child {
+  grid-column: 2;
+}
+
+@media (pointer: coarse) {
+  .jogo-setas {
+    display: grid;
+  }
+}
+
+@media (max-width: 820px) {
+  .trilha {
+    height: auto;
+    padding-left: 30px;
+  }
+
+  .trilha::before,
+  .trilha::after {
+    top: 8px;
+    bottom: 8px;
+    left: 6px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  .trilha::after {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .trilha.visivel::after {
+    transform: scaleY(1);
+  }
+
+  .trilha li {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    padding: 6px 0;
+  }
+
+  .trilha li::before {
+    top: 12px;
+    left: -31px;
+  }
+
+  .trilha b,
+  .trilha span,
+  .trilha li:nth-child(even) b,
+  .trilha li:nth-child(even) span {
+    position: static;
+    display: inline;
+    max-width: none;
+    transform: none;
+    text-align: left;
+  }
+
+  .trilha b {
+    margin-right: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trilha::after,
+  .trilha li::before,
+  .commits-grade i[data-n] {
+    transition: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .trilha li:is(:first-child, :last-child) :is(b, span),
+  .trilha li:nth-child(2) :is(b, span) {
+    transform: none;
+    text-align: left;
+  }
+}

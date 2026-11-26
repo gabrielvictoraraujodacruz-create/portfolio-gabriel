@@ -201,6 +201,7 @@ const segredos = [
   ["lab", t("Visitou o laboratório", "Visited the lab"), t("tem uma página extra na seção Projetos", "there is an extra page in Projects")],
   ["matrix", t("Entrou na Matrix", "Entered the Matrix"), t("um comando do terminal com nome de filme", "a terminal command named after a movie")],
   ["retro", t("Ligou o modo retrô", "Turned on retro mode"), "↑ ↑ ↓ ↓ ← → ← → B A"],
+  ["jogo", t("Fez 5 pontos na cobrinha", "Scored 5 in Snake"), t("um comando do terminal para jogar", "a terminal command to play")],
 ];
 const achados = (() => {
   try {
@@ -341,7 +342,7 @@ if (terminal) {
   };
   const cafe = "   ( (\n    ) )\n  ........\n  |      |]\n  \\      /\n   `----'";
   const comandos = ingles ? {
-    help: () => "about · projects · skills · education · experience · contact · resume · github · lab · theme · lang · ls · cat · whoami · date · echo · coffee · matrix · retro · secrets · sudo · clear",
+    help: () => "about · projects · skills · education · experience · contact · resume · github · lab · theme · lang · ls · cat · whoami · date · echo · coffee · game · matrix · retro · secrets · sudo · clear",
     secrets: () => { abrePainel(); return `Secrets found: ${achados.size}/${segredos.length}`; },
     whoami: () => "Gabriel Victor · Software Engineering student at UDF · Brasília, Brazil",
     about: vai("sobre"), projects: vai("projetos"), skills: vai("tecnologias"), education: vai("formacao"),
@@ -358,9 +359,11 @@ if (terminal) {
     coffee: () => ["pre", `${cafe}\nOne coffee for you. Now back to coding.`],
     matrix: () => { if (reducedMotion) return "Animations are off on this device."; chuvaMatrix(); return "Wake up, Neo... (click or press a key to leave)"; },
     retro: () => (alternaRetro() ? "Retro mode on." : "Retro mode off."),
+    game: () => { abreJogo(); return "Snake loaded. Good luck!"; },
+    snake: () => { abreJogo(); return "Snake loaded. Good luck!"; },
     sudo: () => "gabriel is not in the sudoers file. This incident will be reported. (just kidding)",
   } : {
-    help: () => "sobre · projetos · materias · formacao · experiencia · contato · curriculo · github · lab · tema · idioma · ls · cat · whoami · data · echo · cafe · matrix · retro · segredos · sudo · limpar",
+    help: () => "sobre · projetos · materias · formacao · experiencia · contato · curriculo · github · lab · tema · idioma · ls · cat · whoami · data · echo · cafe · jogo · matrix · retro · segredos · sudo · limpar",
     segredos: () => { abrePainel(); return `Segredos achados: ${achados.size}/${segredos.length}`; },
     whoami: () => "Gabriel Victor · Engenharia de Software na UDF · Brasília, DF",
     sobre: vai("sobre"), projetos: vai("projetos"), materias: vai("tecnologias"), formacao: vai("formacao"),
@@ -377,6 +380,8 @@ if (terminal) {
     cafe: () => ["pre", `${cafe}\nUm café para você. Agora volta pro código.`],
     matrix: () => { if (reducedMotion) return "Animações desligadas neste aparelho."; chuvaMatrix(); return "Acorde, Neo... (clique ou aperte uma tecla para sair)"; },
     retro: () => (alternaRetro() ? "Modo retrô ligado." : "Modo retrô desligado."),
+    jogo: () => { abreJogo(); return "Cobrinha carregada. Boa sorte!"; },
+    cobrinha: () => { abreJogo(); return "Cobrinha carregada. Boa sorte!"; },
     sudo: () => "gabriel não está no arquivo sudoers. Este incidente será reportado. (brincadeira)",
   };
   const historico = [];
@@ -813,3 +818,152 @@ if (caixaLangs) {
   }, { threshold: 0.4 }).observe(caixaLangs);
   new MutationObserver(() => graficoLangs(contagemLangs, false)).observe(raiz, { attributes: true, attributeFilter: ["data-theme", "data-retro"] });
 }
+
+function abreJogo() {
+  const lado = 16;
+  const caixa = document.createElement("dialog");
+  caixa.className = "caso jogo";
+  caixa.setAttribute("aria-labelledby", "jogo-t");
+  caixa.innerHTML = `<form method="dialog"><button class="caso-fechar" aria-label="${t("Fechar", "Close")}">×</button></form><span class="label">${t("Jogo", "Game")}</span><h2 id="jogo-t">${t("Cobrinha", "Snake")}</h2><p class="jogo-placar"><span>${t("Pontos", "Score")}: <b data-pontos>0</b></span><span>${t("Recorde", "Best")}: <b data-recorde>0</b></span></p><canvas width="320" height="320" aria-label="${t("Tabuleiro do jogo", "Game board")}"></canvas><p class="jogo-msg" role="status"></p><div class="jogo-setas"><button type="button" data-dir="0,-1" aria-label="${t("Cima", "Up")}">↑</button><button type="button" data-dir="-1,0" aria-label="${t("Esquerda", "Left")}">←</button><button type="button" data-dir="0,1" aria-label="${t("Baixo", "Down")}">↓</button><button type="button" data-dir="1,0" aria-label="${t("Direita", "Right")}">→</button></div>`;
+  document.body.append(caixa);
+  const tela = caixa.querySelector("canvas");
+  const ctx = tela.getContext("2d");
+  const msg = caixa.querySelector(".jogo-msg");
+  const campoPontos = caixa.querySelector("[data-pontos]");
+  const campoRecorde = caixa.querySelector("[data-recorde]");
+  const celula = tela.width / lado;
+  let recorde = 0;
+  try { recorde = Number(localStorage.getItem("cobrinha-recorde")) || 0; } catch (e) {}
+  campoRecorde.textContent = recorde;
+  let cobra, dir, fila, comida, pontos, estado, relogio;
+  const sorteia = () => {
+    do {
+      comida = { x: Math.floor(Math.random() * lado), y: Math.floor(Math.random() * lado) };
+    } while (cobra.some((p) => p.x === comida.x && p.y === comida.y));
+  };
+  const desenha = () => {
+    const cor = getComputedStyle(raiz).getPropertyValue("--glow").trim();
+    ctx.clearRect(0, 0, tela.width, tela.height);
+    ctx.fillStyle = "#ff8a65";
+    ctx.beginPath();
+    ctx.arc((comida.x + 0.5) * celula, (comida.y + 0.5) * celula, celula * 0.36, 0, Math.PI * 2);
+    ctx.fill();
+    cobra.forEach((p, i) => {
+      ctx.fillStyle = `rgba(${cor}, ${i === 0 ? 1 : Math.max(0.35, 0.9 - i * 0.03)})`;
+      ctx.fillRect(p.x * celula + 1, p.y * celula + 1, celula - 2, celula - 2);
+    });
+  };
+  const reinicia = () => {
+    cobra = [{ x: 8, y: 8 }, { x: 7, y: 8 }, { x: 6, y: 8 }];
+    dir = { x: 1, y: 0 };
+    fila = [];
+    pontos = 0;
+    estado = "pronto";
+    campoPontos.textContent = 0;
+    msg.textContent = t("Use as setas ou WASD para começar.", "Use the arrow keys or WASD to start.");
+    sorteia();
+    desenha();
+  };
+  const passo = () => {
+    if (fila.length) dir = fila.shift();
+    const cabeca = { x: cobra[0].x + dir.x, y: cobra[0].y + dir.y };
+    const bateu = cabeca.x < 0 || cabeca.y < 0 || cabeca.x >= lado || cabeca.y >= lado
+      || cobra.slice(0, -1).some((p) => p.x === cabeca.x && p.y === cabeca.y);
+    if (bateu) {
+      estado = "fim";
+      if (pontos > recorde) {
+        recorde = pontos;
+        campoRecorde.textContent = recorde;
+        try { localStorage.setItem("cobrinha-recorde", recorde); } catch (e) {}
+      }
+      msg.textContent = t(`Fim de jogo: ${pontos} pontos. Aperte espaço ou uma seta para jogar de novo.`, `Game over: ${pontos} points. Press space or an arrow to play again.`);
+      return;
+    }
+    cobra.unshift(cabeca);
+    if (cabeca.x === comida.x && cabeca.y === comida.y) {
+      pontos++;
+      campoPontos.textContent = pontos;
+      if (pontos === 5) conquista("jogo");
+      sorteia();
+    } else cobra.pop();
+    desenha();
+    relogio = setTimeout(passo, Math.max(65, 140 - pontos * 4));
+  };
+  const vira = (x, y) => {
+    if (estado === "fim") reinicia();
+    const ultima = fila.at(-1) ?? dir;
+    if (x === -ultima.x && y === -ultima.y) return;
+    if (x === ultima.x && y === ultima.y && estado === "rodando") return;
+    if (fila.length < 3) fila.push({ x, y });
+    if (estado === "pronto") {
+      estado = "rodando";
+      msg.textContent = "";
+      passo();
+    }
+  };
+  const teclas = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] };
+  caixa.addEventListener("keydown", (e) => {
+    const seta = teclas[e.key.length === 1 ? e.key.toLowerCase() : e.key];
+    if (seta) {
+      e.preventDefault();
+      vira(...seta);
+    } else if (e.key === " " && estado === "fim") {
+      e.preventDefault();
+      reinicia();
+    }
+  });
+  caixa.querySelectorAll("[data-dir]").forEach((botao) => {
+    botao.addEventListener("click", () => vira(...botao.dataset.dir.split(",").map(Number)));
+  });
+  caixa.addEventListener("click", (e) => {
+    if (e.target === caixa) caixa.close();
+  });
+  caixa.addEventListener("close", () => {
+    clearTimeout(relogio);
+    caixa.remove();
+  });
+  reinicia();
+  caixa.showModal();
+  tela.tabIndex = 0;
+  tela.focus();
+}
+
+const trilha = document.querySelector(".trilha");
+if (trilha) {
+  new IntersectionObserver(([entry], obs) => {
+    if (!entry.isIntersecting) return;
+    trilha.classList.add("visivel");
+    obs.disconnect();
+  }, { threshold: 0.5 }).observe(trilha);
+}
+
+const calendario = document.querySelector("[data-commits]");
+if (calendario) {
+  fetch("../assets/data/commits.json")
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then(({ total, dias }) => {
+      const grade = calendario.querySelector(".commits-grade");
+      const vazios = new Date(`${dias[0][0]}T12:00`).getDay();
+      const celulas = Array.from({ length: vazios }, () => document.createElement("i"));
+      dias.forEach(([data, n, nivel], i) => {
+        const c = document.createElement("i");
+        c.dataset.n = nivel;
+        c.style.setProperty("--c", Math.floor((i + vazios) / 7));
+        const dia = new Date(`${data}T12:00`).toLocaleDateString(t("pt-BR", "en"), { day: "numeric", month: "short", year: "numeric" });
+        c.title = t(`${n} ${n === 1 ? "contribuição" : "contribuições"} em ${dia}`, `${n} ${n === 1 ? "contribution" : "contributions"} on ${dia}`);
+        celulas.push(c);
+      });
+      grade.append(...celulas);
+      calendario.querySelector("[data-commits-total]").textContent = total;
+      calendario.hidden = false;
+      grade.scrollLeft = grade.scrollWidth;
+      new IntersectionObserver(([entry], obs) => {
+        if (!entry.isIntersecting) return;
+        calendario.classList.add("visivel");
+        obs.disconnect();
+      }, { threshold: 0.3 }).observe(calendario);
+    })
+    .catch(() => {});
+}
+
+document.querySelector("[data-cartao]")?.addEventListener("click", () => document.getElementById("cartao").showModal());
