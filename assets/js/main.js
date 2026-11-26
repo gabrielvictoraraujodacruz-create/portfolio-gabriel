@@ -827,42 +827,72 @@ function abreJogo() {
   caixa.innerHTML = `<form method="dialog"><button class="caso-fechar" aria-label="${t("Fechar", "Close")}">×</button></form><span class="label">${t("Jogo", "Game")}</span><h2 id="jogo-t">${t("Cobrinha", "Snake")}</h2><p class="jogo-placar"><span>${t("Pontos", "Score")}: <b data-pontos>0</b></span><span>${t("Recorde", "Best")}: <b data-recorde>0</b></span></p><canvas width="320" height="320" aria-label="${t("Tabuleiro do jogo", "Game board")}"></canvas><p class="jogo-msg" role="status"></p><div class="jogo-setas"><button type="button" data-dir="0,-1" aria-label="${t("Cima", "Up")}">↑</button><button type="button" data-dir="-1,0" aria-label="${t("Esquerda", "Left")}">←</button><button type="button" data-dir="0,1" aria-label="${t("Baixo", "Down")}">↓</button><button type="button" data-dir="1,0" aria-label="${t("Direita", "Right")}">→</button></div>`;
   document.body.append(caixa);
   const tela = caixa.querySelector("canvas");
+  const escala = devicePixelRatio || 1;
+  tela.width = 320 * escala;
+  tela.height = 320 * escala;
   const ctx = tela.getContext("2d");
+  ctx.scale(escala, escala);
   const msg = caixa.querySelector(".jogo-msg");
   const campoPontos = caixa.querySelector("[data-pontos]");
   const campoRecorde = caixa.querySelector("[data-recorde]");
-  const celula = tela.width / lado;
+  const celula = 320 / lado;
   let recorde = 0;
   try { recorde = Number(localStorage.getItem("cobrinha-recorde")) || 0; } catch (e) {}
   campoRecorde.textContent = recorde;
-  let cobra, dir, fila, comida, pontos, estado, relogio;
+  let cobra, anterior, dir, fila, comida, pontos, estado, ultimo, quadro, mordida;
+  const intervalo = () => Math.max(70, 150 - pontos * 4);
   const sorteia = () => {
     do {
       comida = { x: Math.floor(Math.random() * lado), y: Math.floor(Math.random() * lado) };
     } while (cobra.some((p) => p.x === comida.x && p.y === comida.y));
+    mordida = performance.now();
   };
-  const desenha = () => {
+  const desenha = (agora, fracao) => {
     const cor = getComputedStyle(raiz).getPropertyValue("--glow").trim();
-    ctx.clearRect(0, 0, tela.width, tela.height);
+    ctx.clearRect(0, 0, 320, 320);
+    const pulso = 1 + 0.08 * Math.sin(agora / 160);
+    const surge = Math.min(1, (agora - mordida) / 180);
     ctx.fillStyle = "#ff8a65";
     ctx.beginPath();
-    ctx.arc((comida.x + 0.5) * celula, (comida.y + 0.5) * celula, celula * 0.36, 0, Math.PI * 2);
+    ctx.arc((comida.x + 0.5) * celula, (comida.y + 0.5) * celula, celula * 0.34 * pulso * surge, 0, Math.PI * 2);
     ctx.fill();
-    cobra.forEach((p, i) => {
-      ctx.fillStyle = `rgba(${cor}, ${i === 0 ? 1 : Math.max(0.35, 0.9 - i * 0.03)})`;
-      ctx.fillRect(p.x * celula + 1, p.y * celula + 1, celula - 2, celula - 2);
+    const pontosCorpo = cobra.map((p, i) => {
+      const de = anterior[i] ?? anterior[anterior.length - 1];
+      return { x: (de.x + (p.x - de.x) * fracao + 0.5) * celula, y: (de.y + (p.y - de.y) * fracao + 0.5) * celula };
+    });
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    const cauda = pontosCorpo.at(-1);
+    const degrade = ctx.createLinearGradient(pontosCorpo[0].x, pontosCorpo[0].y, cauda.x, cauda.y);
+    degrade.addColorStop(0, `rgb(${cor})`);
+    degrade.addColorStop(1, `rgba(${cor}, 0.55)`);
+    ctx.strokeStyle = degrade;
+    ctx.lineWidth = celula * 0.72;
+    ctx.beginPath();
+    pontosCorpo.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+    ctx.stroke();
+    const cabeca = pontosCorpo[0];
+    ctx.fillStyle = `rgb(${cor})`;
+    ctx.beginPath();
+    ctx.arc(cabeca.x, cabeca.y, celula * 0.46, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = getComputedStyle(raiz).getPropertyValue("--bg").trim();
+    [-1, 1].forEach((lado) => {
+      ctx.beginPath();
+      ctx.arc(cabeca.x + dir.x * celula * 0.16 - dir.y * lado * celula * 0.2, cabeca.y + dir.y * celula * 0.16 + dir.x * lado * celula * 0.2, celula * 0.08, 0, Math.PI * 2);
+      ctx.fill();
     });
   };
   const reinicia = () => {
     cobra = [{ x: 8, y: 8 }, { x: 7, y: 8 }, { x: 6, y: 8 }];
+    anterior = cobra.map((p) => ({ ...p }));
     dir = { x: 1, y: 0 };
     fila = [];
     pontos = 0;
     estado = "pronto";
     campoPontos.textContent = 0;
-    msg.textContent = t("Use as setas ou WASD para começar.", "Use the arrow keys or WASD to start.");
+    msg.textContent = t("Use as setas, WASD ou deslize o dedo para começar.", "Use the arrow keys, WASD or swipe to start.");
     sorteia();
-    desenha();
   };
   const passo = () => {
     if (fila.length) dir = fila.shift();
@@ -871,6 +901,7 @@ function abreJogo() {
       || cobra.slice(0, -1).some((p) => p.x === cabeca.x && p.y === cabeca.y);
     if (bateu) {
       estado = "fim";
+      anterior = cobra.map((p) => ({ ...p }));
       if (pontos > recorde) {
         recorde = pontos;
         campoRecorde.textContent = recorde;
@@ -879,6 +910,7 @@ function abreJogo() {
       msg.textContent = t(`Fim de jogo: ${pontos} pontos. Aperte espaço ou uma seta para jogar de novo.`, `Game over: ${pontos} points. Press space or an arrow to play again.`);
       return;
     }
+    anterior = cobra.map((p) => ({ ...p }));
     cobra.unshift(cabeca);
     if (cabeca.x === comida.x && cabeca.y === comida.y) {
       pontos++;
@@ -886,8 +918,18 @@ function abreJogo() {
       if (pontos === 5) conquista("jogo");
       sorteia();
     } else cobra.pop();
-    desenha();
-    relogio = setTimeout(passo, Math.max(65, 140 - pontos * 4));
+  };
+  const ciclo = (agora) => {
+    if (estado === "rodando") {
+      if (agora - ultimo > 500) ultimo = agora - intervalo();
+      while (estado === "rodando" && agora - ultimo >= intervalo()) {
+        ultimo += intervalo();
+        passo();
+      }
+    }
+    const fracao = estado === "rodando" ? Math.min(1, (agora - ultimo) / intervalo()) : 1;
+    desenha(agora, fracao);
+    quadro = requestAnimationFrame(ciclo);
   };
   const vira = (x, y) => {
     if (estado === "fim") reinicia();
@@ -898,7 +940,7 @@ function abreJogo() {
     if (estado === "pronto") {
       estado = "rodando";
       msg.textContent = "";
-      passo();
+      ultimo = performance.now();
     }
   };
   const teclas = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] };
@@ -912,6 +954,18 @@ function abreJogo() {
       reinicia();
     }
   });
+  let toque = null;
+  tela.addEventListener("pointerdown", (e) => { toque = { x: e.clientX, y: e.clientY }; });
+  tela.addEventListener("pointermove", (e) => {
+    if (!toque) return;
+    const dx = e.clientX - toque.x;
+    const dy = e.clientY - toque.y;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+    if (Math.abs(dx) > Math.abs(dy)) vira(Math.sign(dx), 0);
+    else vira(0, Math.sign(dy));
+    toque = { x: e.clientX, y: e.clientY };
+  });
+  ["pointerup", "pointercancel", "pointerleave"].forEach((ev) => tela.addEventListener(ev, () => { toque = null; }));
   caixa.querySelectorAll("[data-dir]").forEach((botao) => {
     botao.addEventListener("click", () => vira(...botao.dataset.dir.split(",").map(Number)));
   });
@@ -919,13 +973,14 @@ function abreJogo() {
     if (e.target === caixa) caixa.close();
   });
   caixa.addEventListener("close", () => {
-    clearTimeout(relogio);
+    cancelAnimationFrame(quadro);
     caixa.remove();
   });
   reinicia();
   caixa.showModal();
   tela.tabIndex = 0;
   tela.focus();
+  quadro = requestAnimationFrame(ciclo);
 }
 
 const trilha = document.querySelector(".trilha");
