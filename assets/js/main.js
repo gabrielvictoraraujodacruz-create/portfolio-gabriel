@@ -512,11 +512,6 @@ fetch(`https://api.github.com/users/gabrielvictoraraujodacruz-create/repos?sort=
   })
   .catch(() => {});
 
-fetch("https://api.github.com/repos/gabrielvictoraraujodacruz-create/java_diario/contents/estudo")
-  .then((r) => (r.ok ? r.json() : []))
-  .then((itens) => numero("java", Math.max(0, ...itens.map((i) => Number(/^dia-(\d+)$/.exec(i.name)?.[1] || 0)))))
-  .catch(() => {});
-
 fetch("https://dev.to/api/articles?username=gabrielvictorcruz&per_page=5")
   .then((r) => (r.ok ? r.json() : []))
   .then((posts) => preenche(document.querySelector("[data-devto]"), posts

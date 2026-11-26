@@ -11,7 +11,7 @@
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <script>try{if(localStorage.getItem("tema")==="claro")document.documentElement.dataset.bsTheme="light"}catch(e){}</script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/lab.css?v=1">
+  <link rel="stylesheet" href="../assets/css/lab.css?v=2">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
   <script src="../assets/js/lab.js?v=2" defer></script>
 </head>
@@ -31,6 +31,7 @@
           <li class="nav-item"><a class="nav-link" href="#css">CSS3</a></li>
           <li class="nav-item"><a class="nav-link" href="#js">JavaScript</a></li>
           <li class="nav-item"><a class="nav-link" href="#deploy">Deploy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bastidores">Bastidores</a></li>
         </ul>
         <div class="d-flex gap-2">
           <a class="btn btn-sm btn-outline-secondary" href="../en/lab.html" hreflang="en" lang="en">EN</a>
@@ -190,6 +191,121 @@
             </div>
           </div>
         </aside>
+      </div>
+
+    <section class="container pb-5" id="bastidores">
+      <h2 class="h3">Por dentro dos projetos</h2>
+      <p class="text-body-secondary col-lg-9">O passo a passo de como as partes principais funcionam, em linguagem simples. Construí tudo com o Claude Code; aqui está o que eu preciso entender para explicar, testar e corrigir.</p>
+      <ul class="nav nav-tabs flex-nowrap overflow-x-auto" role="tablist">
+        <li class="nav-item" role="presentation"><button class="nav-link text-nowrap active" id="aba-terminal" data-bs-toggle="tab" data-bs-target="#painel-terminal" type="button" role="tab" aria-controls="painel-terminal" aria-selected="true">Terminal</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link text-nowrap" id="aba-cobrinha" data-bs-toggle="tab" data-bs-target="#painel-cobrinha" type="button" role="tab" aria-controls="painel-cobrinha" aria-selected="false">Cobrinha</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link text-nowrap" id="aba-motor" data-bs-toggle="tab" data-bs-target="#painel-motor" type="button" role="tab" aria-controls="painel-motor" aria-selected="false">Motor de contratos</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link text-nowrap" id="aba-ia" data-bs-toggle="tab" data-bs-target="#painel-ia" type="button" role="tab" aria-controls="painel-ia" aria-selected="false">Como uso a IA</button></li>
+      </ul>
+      <div class="tab-content border border-top-0 rounded-bottom p-3 p-md-4">
+        <div class="tab-pane fade show active" id="painel-terminal" role="tabpanel" aria-labelledby="aba-terminal" tabindex="0">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <ol class="passos">
+              <li><strong>O HTML:</strong> uma caixa onde as respostas aparecem e um formulário com um campo de texto.</li>
+              <li><strong>O evento:</strong> quando você aperta Enter, o formulário dispara um <code>submit</code>. O JavaScript escuta com <code>addEventListener</code> e usa <code>preventDefault()</code> para a página não recarregar.</li>
+              <li><strong>A lista de comandos:</strong> um objeto em que cada nome aponta para uma função. <code>help</code> devolve a lista, <code>sobre</code> rola até a seção, e assim por diante.</li>
+              <li><strong>Executar:</strong> o texto digitado vira minúsculo, e o código procura esse nome no objeto. Se acha, roda a função; se não, responde “Comando não encontrado”.</li>
+              <li><strong>Mostrar a resposta:</strong> <code>createElement</code> cria um parágrafo novo, coloca o texto e o <code>append</code> o põe na caixa.</li>
+              <li><strong>Extras:</strong> ↑ e ↓ andam pelo histórico (um array com o que já foi digitado), Tab completa o nome do comando e os segredos achados ficam salvos no <code>localStorage</code>.</li>
+              </ol>
+            </div>
+            <div class="col-lg-6">
+              <pre class="codigo"><code>const comandos = {
+  help: () =&gt; &quot;sobre · projetos · contato · jogo&quot;,
+  whoami: () =&gt; &quot;Gabriel Victor · Engenharia de Software&quot;,
+};
+
+formulario.addEventListener(&quot;submit&quot;, (evento) =&gt; {
+  evento.preventDefault();
+  const nome = campo.value.trim().toLowerCase();
+  const acao = comandos[nome];
+  escreve(acao ? acao() : `Comando não encontrado: ${nome}`);
+  campo.value = &quot;&quot;;
+});</code></pre>
+              <p class="small text-body-secondary mb-0">Versão resumida. Teste no <a href="index.html#sobre">terminal do portfólio</a>: digite <code>help</code>.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="painel-cobrinha" role="tabpanel" aria-labelledby="aba-cobrinha" tabindex="0">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <ol class="passos">
+              <li><strong>O tabuleiro:</strong> um <code>&lt;canvas&gt;</code> de 320 × 320 dividido em 16 × 16 casas de 20 pixels.</li>
+              <li><strong>A cobra é uma lista:</strong> <code>[{x: 8, y: 8}, {x: 7, y: 8}, {x: 6, y: 8}]</code>. A primeira posição é a cabeça.</li>
+              <li><strong>Andar:</strong> a cada passo, a cabeça nova é a cabeça atual mais a direção. Ela entra no começo da lista (<code>unshift</code>) e a última posição sai (<code>pop</code>). Por isso parece que a cobra anda.</li>
+              <li><strong>Comer:</strong> se a cabeça cai na fruta, o código não tira a última posição, e a cobra cresce uma casa. A fruta é sorteada de novo num lugar vazio.</li>
+              <li><strong>Perder:</strong> se a cabeça sai do tabuleiro ou bate no próprio corpo, acaba o jogo e o recorde fica salvo no <code>localStorage</code>.</li>
+              <li><strong>Controles:</strong> setas e WASD (<code>keydown</code>), botões na tela e deslizar o dedo (<code>pointer events</code>) mudam a direção. Virar para trás é bloqueado.</li>
+              <li><strong>Fluidez:</strong> o <code>requestAnimationFrame</code> desenha cerca de 60 vezes por segundo, e entre um passo e outro a cobra é desenhada no meio do caminho.</li>
+              <li><strong>O bug que achei:</strong> a fruta aparecia crescendo, com o tamanho calculado pelo tempo. No celular, a conta às vezes dava negativa, o canvas dava erro e o jogo travava. A correção foi não deixar passar de zero: <code>Math.max(0, ...)</code>.</li>
+              </ol>
+            </div>
+            <div class="col-lg-6">
+              <pre class="codigo"><code>const cabeca = { x: cobra[0].x + dir.x, y: cobra[0].y + dir.y };
+cobra.unshift(cabeca);
+
+if (cabeca.x === comida.x &amp;&amp; cabeca.y === comida.y) {
+  pontos++;
+  sorteia();
+} else {
+  cobra.pop();
+}</code></pre>
+              <p class="small text-body-secondary mb-0">O coração do jogo: andar, comer e crescer. Para jogar, digite <code>jogo</code> no <a href="index.html#sobre">terminal</a>.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="painel-motor" role="tabpanel" aria-labelledby="aba-motor" tabindex="0">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <ol class="passos">
+              <li><strong>O problema:</strong> cada contrato levava uns 15 minutos para editar o modelo, conferir e imprimir, e são de 10 a 15 por semana.</li>
+              <li><strong>O pseudocódigo:</strong> escrevi o passo a passo em português antes de qualquer código. É ele que está ao lado.</li>
+              <li><strong>O código:</strong> orquestrei o Claude Code para transformar o pseudocódigo em um script em Python, usando os modelos que os advogados já tinham aprovado.</li>
+              <li><strong>Os testes:</strong> rodei com casos reais e conferi campo por campo. Apareceram bugs, como impressora errada e contrato com dado faltando, e por isso o script confere os campos antes de gerar.</li>
+              <li><strong>A conferência:</strong> todo documento passa por uma pessoa antes de ser assinado.</li>
+              <li><strong>O resultado:</strong> de 15 minutos para cerca de 1 minuto por contrato.</li>
+              </ol>
+            </div>
+            <div class="col-lg-6">
+              <pre class="codigo"><code>PARA cada contrato novo:
+  ler os dados da ficha do cliente
+  SE faltar um campo obrigatório:
+    avisar o que falta e parar
+  abrir o modelo aprovado pelos advogados
+  trocar cada marcador ({{NOME}}, {{CPF}}...) pelo dado
+  salvar na pasta do cliente
+  mandar para a impressora certa</code></pre>
+              <p class="small text-body-secondary mb-0">Só o fluxo. O código e os modelos do escritório não são públicos, porque envolvem dados de clientes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="painel-ia" role="tabpanel" aria-labelledby="aba-ia" tabindex="0">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <ol class="passos">
+              <li><strong>Eu defino o problema:</strong> o que precisa ser resolvido e para quem.</li>
+              <li><strong>Eu escrevo o pseudocódigo e as regras:</strong> é onde fica a lógica.</li>
+              <li><strong>A IA escreve o código:</strong> o Claude Code transforma isso em HTML, CSS, JavaScript ou Python.</li>
+              <li><strong>Eu testo como usuário:</strong> no computador e no celular, tentando quebrar.</li>
+              <li><strong>Eu acho os bugs e reviso:</strong> descrevo o que está errado, confiro a correção e decido se entra.</li>
+              </ol>
+            </div>
+            <div class="col-lg-6">
+              <pre class="codigo"><code>1. Eu defino o problema e escrevo o pseudocódigo
+2. O Claude Code escreve o código
+3. Eu testo como usuário, no computador e no celular
+4. Encontro os bugs e descrevo o que está errado
+5. Reviso a correção e decido se ela entra</code></pre>
+              <p class="small text-body-secondary mb-0">Não escondo que uso IA. O que eu treino é decidir o que construir, testar e conseguir explicar o resultado.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

@@ -86,3 +86,34 @@ html {
     transition: none;
   }
 }
+
+.passos {
+  padding-left: 1.25rem;
+}
+
+.passos li {
+  margin-bottom: 0.75rem;
+}
+
+.passos li::marker {
+  color: var(--bs-info);
+  font-weight: 700;
+}
+
+.codigo {
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: var(--bs-tertiary-bg);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+#bastidores .nav-link {
+  color: var(--bs-body-color);
+}
+
+#bastidores .nav-link.active {
+  color: var(--bs-info);
+  font-weight: 600;
+}

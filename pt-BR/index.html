@@ -21,8 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/style.css?v=18">
-  <script src="../assets/js/main.js?v=16" defer></script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=19">
+  <script src="../assets/js/main.js?v=17" defer></script>
 </head>
 <body>
   <svg class="icons" aria-hidden="true">
@@ -93,7 +93,7 @@
         <li class="card stat"><strong data-stat="repos">18</strong><span>repositórios públicos no GitHub</span></li>
         <li class="card stat"><strong data-stat="langs">6</strong><span>linguagens nos meus repositórios</span></li>
         <li class="card stat"><strong data-stat="materias">9</strong><span>matérias cursadas na UDF</span></li>
-        <li class="card stat"><strong data-stat="java">3</strong><span>dias do desafio de Java</span></li>
+        <li class="card stat"><strong data-stat="minutos">14</strong><span>minutos a menos em cada contrato do escritório</span></li>
       </ul>
       <div class="card agora">
         <span class="agora-ponto" aria-hidden="true"></span>
@@ -139,9 +139,19 @@
       <div class="section-head">
         <span class="label">Projetos</span>
         <h2>Projetos acadêmicos e pessoais</h2>
-        <p>Projetos que construí sozinho ou em grupo. Os códigos de cada matéria ficam em <a href="#tecnologias">Tecnologias</a>.</p>
+        <p>O primeiro roda toda semana no escritório. Os outros são da faculdade e pessoais, feitos sozinho ou em grupo. Os códigos de cada matéria ficam em <a href="#tecnologias">Tecnologias</a>.</p>
       </div>
       <div class="grid-3">
+        <article class="card project destaque" data-category="ai">
+          <div class="project-body">
+            <span class="chip">No trabalho</span>
+            <h3>Motor de contratos</h3>
+            <p class="projeto-numero"><b>15 min → 1 min</b> por contrato</p>
+            <p>No escritório, cada contrato levava uns 15 minutos para editar o modelo, conferir e imprimir. Escrevi o pseudocódigo e as regras e orquestrei o Claude Code para montar o script em Python. Hoje sai em cerca de 1 minuto, e são de 10 a 15 contratos por semana, todos passando por mim. O mesmo motor gera petições a partir dos modelos aprovados pelos advogados.</p>
+            <div class="subject-list"><span class="tag">Python</span><span class="tag">Claude Code</span><span class="tag">Automação</span></div>
+            <div class="project-links"><button class="link-btn" type="button" data-caso="caso-documentos">Como fiz</button><a href="laboratorio.html#bastidores">Passo a passo</a></div>
+          </div>
+        </article>
         <article class="card project" data-category="web">
           <video src="../assets/video/portfolio.mp4" poster="../assets/img/og-pt.jpg" width="640" height="360" muted loop playsinline preload="none" aria-label="Prévia em vídeo deste portfólio, rolando a página."></video>
           <div class="project-body">
@@ -150,6 +160,16 @@
             <p>HTML, CSS e JavaScript puro, sem framework. Tem português e inglês, tema claro e escuro, terminal interativo e dados ao vivo das APIs do GitHub e do dev.to. Publicado no GitHub Pages.</p>
             <div class="subject-list"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">API REST</span></div>
             <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/portfolio-gabriel" target="_blank" rel="noopener">GitHub</a><button class="link-btn" type="button" data-caso="caso-portfolio">Como fiz</button></div>
+          </div>
+        </article>
+        <article class="card project" data-category="ai">
+          <img class="banner" src="../assets/img/icone-hermes.jpg" width="800" height="200" loading="lazy" alt="Rede de agentes conectados.">
+          <div class="project-body">
+            <span class="chip quiet">Pessoal</span>
+            <h3>Meus agentes no Claude Code</h3>
+            <p>O <b>gabriel-estudante</b> é meu tutor: organiza o conteúdo das aulas, cria desafios e monta o plano de estudo comigo, ajustando a dificuldade pelo que eu digo de cada desafio. O <b>gabriel-empresario</b> cuida dos projetos paralelos: sites feitos com Claude Code e publicados na Cloudflare, e canais dark no YouTube em fase de teste, sobre fatos históricos curiosos, golpes e fraudes reais e games, em que eu defino tema, voz e regras, reviso roteiro e vídeo antes de postar e acompanho as métricas.</p>
+            <div class="subject-list"><span class="tag">Agentes</span><span class="tag">Claude Code</span><span class="tag">Cloudflare</span></div>
+            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Hermes_Agente_de_IA" target="_blank" rel="noopener">Guia do Hermes Agent</a></div>
           </div>
         </article>
         <article class="card project" data-category="web">
@@ -178,26 +198,6 @@
               <a href="https://gabrielvictoraraujodacruz-create.github.io/Site_Macabro/" target="_blank" rel="noopener">Ver site</a>
               <a href="https://github.com/gabrielvictoraraujodacruz-create/Site_Macabro" target="_blank" rel="noopener">GitHub</a>
             </div>
-          </div>
-        </article>
-        <article class="card project" data-category="code">
-          <img class="banner" src="../assets/img/icone-git.jpg" width="800" height="200" loading="lazy" alt="Símbolo de ramificação do Git.">
-          <div class="project-body">
-            <span class="chip quiet">Em andamento</span>
-            <h3>Caderno de Git</h3>
-            <p>Minha cola de Git, escrita com as minhas palavras: o que são repositório, commit e push, os três lugares por onde uma mudança passa, os comandos básicos e um exercício criando um repositório do zero.</p>
-            <div class="subject-list"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Git Bash</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/java_diario/blob/main/git/CADERNO-GIT.md" target="_blank" rel="noopener">Ver caderno</a></div>
-          </div>
-        </article>
-        <article class="card project" data-category="ai">
-          <img class="banner" src="../assets/img/icone-hermes.jpg" width="800" height="200" loading="lazy" alt="Rede de agentes conectados.">
-          <div class="project-body">
-            <span class="chip quiet">Pessoal</span>
-            <h3>Hermes e Claude Code</h3>
-            <p>Guia e aprendizados sobre o uso do Hermes Agent, um agente de IA open source, e do Claude Code no meu ambiente.</p>
-            <div class="subject-list"><span class="tag">Agentes</span><span class="tag">Claude Code</span></div>
-            <div class="project-links"><a href="https://github.com/gabrielvictoraraujodacruz-create/Hermes_Agente_de_IA" target="_blank" rel="noopener">GitHub</a></div>
           </div>
         </article>
         <article class="card project" data-category="design">
@@ -234,7 +234,7 @@
         </article>
         <article class="card">
           <h3>Artigos no dev.to</h3>
-          <p>Escrevo sobre o que aprendo e sobre a automação do escritório.</p>
+          <p>Publiquei o primeiro artigo, sobre a automação do escritório. As anotações do dia a dia ficam no GitHub, que uso como caderno nas aulas.</p>
           <ul class="link-list" data-devto data-lang="pt">
             <li><a href="https://dev.to/gabrielvictorcruz" target="_blank" rel="noopener">Ver meu perfil no dev.to</a><span>Artigos carregados direto do dev.to</span></li>
           </ul>
@@ -262,7 +262,7 @@
         <article class="card ai-card">
           <svg class="card-icon ic-flap" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34c2-12 10-20 24-22-4 4-6 7-7 10 5-1 9-2 13-5-2 9-9 16-20 17z" stroke="#83f3de"/><path d="M14 36l-6 5" stroke="#83f3de"/></svg>
           <h3>Agentes autônomos</h3>
-          <p>Testo agentes que usam ferramentas e têm memória, e aprendo com os limites que aparecem.</p>
+          <p>Montei dois agentes no Claude Code, um tutor de estudos e um que toca meus projetos paralelos, e ajusto as regras de cada um pelo que dá certo ou errado.</p>
         </article>
         <article class="card ai-card">
           <svg class="card-icon ic-float" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="22" height="22" rx="7" stroke="#adc6ff"/><rect x="20" y="20" width="22" height="22" rx="7" stroke="#ffe08a"/><circle cx="14" cy="14" r="1.6" fill="#adc6ff" stroke="none"/><circle cx="34" cy="34" r="1.6" fill="#ffe08a" stroke="none"/></svg>
@@ -277,7 +277,7 @@
         <article class="card ai-card">
           <svg class="card-icon ic-blink" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 15L7 24l9 9M32 15l9 9-9 9" stroke="#ffe08a"/><path class="spark" d="M24 12l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" stroke="#83f3de"/></svg>
           <h3>Desenvolvimento assistido</h3>
-          <p>Uso IA para aprender e programar, e continuo responsável por entender e revisar o resultado.</p>
+          <p>Crio junto com a IA: escrevo o pseudocódigo, testo como usuário, encontro os bugs e reviso cada melhoria antes de usar.</p>
         </article>
       </div>
       <h3 class="sub-title">Aplicado no trabalho</h3>
@@ -285,7 +285,7 @@
       <div class="grid-2">
         <article class="card">
           <h3>Geração de documentos</h3>
-          <p>Scripts em Python preenchem modelos de documentos do escritório. A IA ajuda a reunir as informações, e o texto final vem sempre do modelo.</p>
+          <p>Um contrato levava uns 15 minutos para editar, conferir e imprimir. Com o script em Python, sai em cerca de 1 minuto, e o texto vem sempre do modelo aprovado pelos advogados.</p>
           <ol class="fluxo" style="--n: 5">
             <li><b>01</b>Ficha do cliente</li>
             <li><b>02</b>Script em Python</li>
@@ -379,7 +379,7 @@
         <canvas width="200" height="200" aria-hidden="true"></canvas>
         <div>
           <h3>Linguagem principal dos meus repositórios</h3>
-          <p>Contagem ao vivo pelo GitHub. “Só texto” são repositórios de anotações e guias em Markdown.</p>
+          <p>Contagem ao vivo pelo GitHub. Uso o GitHub como caderno de aula, por isso “Só texto” são os repositórios de anotações, pontos-chave e resumos em Markdown.</p>
           <ul class="langs-legenda"></ul>
         </div>
       </div>
@@ -402,7 +402,7 @@
             <span class="tag">Funções em JS</span>
           </div>
           <p>Agora: JavaScript para interfaces. Próxima etapa: versionamento e deploy.</p>
-          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Materia_de_html-" target="_blank" rel="noopener">Ver repositório no GitHub</a></p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/Desenvolvimento-Front-End-para-Web" target="_blank" rel="noopener">Ver repositório no GitHub</a></p>
         </article>
         <article class="card study">
           <span class="chip">Unidade 3 de 4</span>
@@ -613,6 +613,13 @@
           <p>Progresso: 3/8 módulos</p>
           <p>Módulos: Introdução ao Git · Introdução ao GitHub · Produtos do GitHub · Code scanning · GitHub Copilot · Codespaces · GitHub Projects · Markdown</p>
         </article>
+        <article class="card study">
+          <span class="chip quiet">Pausado</span>
+          <h3>Desafio Java diário</h3>
+          <p>Refazendo meus projetos de Python em Java, um dia de cada vez · 3 dias feitos</p>
+          <p>Pausei por causa das demandas da faculdade e do trabalho. O plano é retomar nas férias.</p>
+          <p><a href="https://github.com/gabrielvictoraraujodacruz-create/java_diario" target="_blank" rel="noopener">Ver repositório</a></p>
+        </article>
       </div>
       <h3 class="sub-title">Estudos complementares</h3>
       <div class="card">
@@ -653,13 +660,12 @@
             <p class="role">Tecnologia e operações administrativas · Direito Previdenciário</p>
             <p class="periodo">Desde janeiro de 2026</p>
             <ul class="checks">
-              <li>Organização de sistemas internos</li>
-              <li>Melhoria de processos administrativos</li>
+              <li>Responsável pelo financeiro do escritório</li>
+              <li>Toda a parte de TI: CRM, tarefas, agendas e sistemas internos</li>
+              <li>Motor de contratos e de petições, a partir dos modelos aprovados pelos advogados</li>
+              <li>Contrato de 15 minutos para 1 minuto, de 10 a 15 por semana</li>
               <li>Acompanhamento de datas e etapas de processos</li>
-              <li>Organização de informações sobre perícias, avaliações e atualizações</li>
-              <li>Apoio à logística de clientes para avaliações e consultas</li>
-              <li>Apoio à captação e ao atendimento</li>
-              <li>Experimentação com IA, Claude Code, agentes e automação</li>
+              <li>Apoio ao atendimento e à logística de clientes</li>
             </ul>
             <p class="note">Atuação de apoio, sob orientação dos profissionais responsáveis. Não presto serviços jurídicos ou médicos.</p>
           </article>
@@ -795,7 +801,7 @@
       <dt>O problema</dt>
       <dd>O projeto final da matéria de Front-End pedia um portfólio. Eu queria um site que mostrasse quem eu sou além das notas: a trajetória desde os 15 anos, o trabalho no escritório e o que eu estudo.</dd>
       <dt>As decisões</dt>
-      <dd>Usei o Stitch, uma IA de design, só para testar layouts. O código final é HTML, CSS e JavaScript puro, sem framework, para eu entender cada linha. Fiz em português e inglês, troquei as barras de porcentagem por “uso prático, acadêmico ou em estudo” e puxo dados ao vivo do GitHub e do dev.to.</dd>
+      <dd>Usei o Stitch, uma IA de design, só para testar layouts. O código é HTML, CSS e JavaScript puro, sem framework. Construí com o Claude Code: eu decidia o que entrava, testava como usuário, apontava os bugs e revisava cada mudança. O passo a passo das partes principais está no laboratório. Fiz em português e inglês, troquei as barras de porcentagem por “uso prático, acadêmico ou em estudo” e puxo dados ao vivo do GitHub e do dev.to.</dd>
       <dt>O que deu errado</dt>
       <dd>O Stitch colocou números inventados nas telas, como requisições por segundo e porcentagens, e eu tive que tirar todos. Uma foto mostrava informações do escritório ao fundo e saiu do site. Na primeira publicação, o GitHub Pages ficou 14 minutos parado na fila.</dd>
       <dt>O que eu faria diferente</dt>
@@ -810,7 +816,7 @@
       <dt>O problema</dt>
       <dd>Todo cliente novo precisa de um kit de documentos: contrato, procuração e declarações. Montar à mão tomava tempo e abria espaço para erro de digitação.</dd>
       <dt>As decisões</dt>
-      <dd>Separei os papéis. A IA só conversa e reúne os dados do cliente. Um script em Python preenche o modelo fixo do escritório, cria a pasta e manda imprimir. O resultado é o mesmo toda vez e sai em segundos.</dd>
+      <dd>Separei os papéis. A IA só conversa e reúne os dados do cliente. Um script em Python preenche o modelo fixo do escritório, cria a pasta e manda imprimir. O resultado é o mesmo toda vez: um contrato que levava uns 15 minutos sai em cerca de 1 minuto, de 10 a 15 vezes por semana. Escrevi o pseudocódigo e as regras, e orquestrei o Claude Code para escrever o script.</dd>
       <dt>O que deu errado</dt>
       <dd>A primeira tentativa foi deixar a IA editar os documentos na hora. Ficou lento, chegou a 20 minutos para 3 documentos, e errou: mandou para a impressora errada e gerou um contrato com dado faltando. Depois, levei o sistema para outro computador sem padronizar antes, e lá o resultado saiu diferente.</dd>
       <dt>O que eu faria diferente</dt>

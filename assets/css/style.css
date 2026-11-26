@@ -2679,3 +2679,22 @@ kbd {
     min-height: 240px;
   }
 }
+
+.project.destaque {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px rgba(var(--glow), 0.35);
+}
+
+.projeto-numero {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+}
+
+.projeto-numero b {
+  display: block;
+  color: var(--primary);
+  font-family: var(--title);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.15;
+}
